@@ -1,2 +1,2 @@
 # SmartListMEAN
-SmartList as MEAN (node.js) Mac
+SmartList as MEAN (node.js) Mac1 
