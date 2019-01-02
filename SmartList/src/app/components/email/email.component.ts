@@ -19,7 +19,7 @@ export class EmailComponent implements OnInit {
     constructor(public af: AngularFireAuth,private router: Router) {
       this.af.authState.subscribe(auth => { 
         if(auth) {
-          this.router.navigateByUrl('/members');
+          this.router.navigateByUrl('/tasks');
         }
       });
   }
@@ -33,7 +33,7 @@ export class EmailComponent implements OnInit {
         .then(
         (success) => {
         console.log(success);
-        this.router.navigate(['/members']);
+        this.router.navigate(['/tasks']);
       }).catch(
         (err) => {
         console.log(err);

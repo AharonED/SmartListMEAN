@@ -5,6 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 //import { AppComponent } from './app.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatCardModule, MatIconModule, MatToolbarModule, MatButtonModule, MatFormFieldModule, MatInputModule } from '@angular/material';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import {HttpModule} from '@angular/http';
 import {FormsModule} from '@angular/forms';
@@ -13,7 +15,6 @@ import {TasksComponent} from './components/tasks/tasks.component';
 import { LoginComponent } from './components/login/login.component';
 import { EmailComponent } from './components/email/email.component';
 import { SignupComponent } from './components/signup/signup.component';
-import { MembersComponent } from './components/members/members.component';
 
 import { AuthGuard } from './auth.service';
 //import { AuthService  } from './auth.service';
@@ -38,7 +39,7 @@ export const firebaseConfig = {
 @NgModule({
   declarations: [
     AppComponent, 
-    TasksComponent, LoginComponent, EmailComponent, SignupComponent, MembersComponent
+    TasksComponent, LoginComponent, EmailComponent, SignupComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +49,15 @@ export const firebaseConfig = {
     AngularFireModule.initializeApp(environment.firebase, 'angular-auth-firebase'),
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features    
         routes,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    BrowserAnimationsModule, 
+    MatCardModule, 
+    MatIconModule, 
+    MatToolbarModule, 
+    MatButtonModule, 
+    MatFormFieldModule, 
+    MatInputModule,
+    FlexLayoutModule  
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]

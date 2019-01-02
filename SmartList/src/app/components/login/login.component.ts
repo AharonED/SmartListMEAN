@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
 
     af.authState.subscribe(auth => { 
       if(auth) {
-        this.router.navigateByUrl('/members');
+        this.router.navigateByUrl('/tasks');
       }
     });
 
@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
       method: AuthMethods.Popup,
     }).then(
         (success) => {
-        this.router.navigate(['/members']);
+        this.router.navigate(['/tasks']);
       }).catch(
         (err) => {
         this.error = err;
@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
       method: AuthMethods.Popup,
     }).then(
         (success) => {
-        this.router.navigate(['/members']);
+        this.router.navigate(['/tasks']);
       }).catch(
         (err) => {
         this.error = err;

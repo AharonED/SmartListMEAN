@@ -28,7 +28,7 @@ export class SignupComponent implements OnInit {
             .then(
             (success) => {
             console.log(success);
-            this.router.navigate(['/members']);
+            this.router.navigate(['/tasks']);
           }).catch(
             (err) => {
             console.log(err);
