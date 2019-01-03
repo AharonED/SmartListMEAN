@@ -6,4 +6,9 @@ const groupSchema = mongoose.Schema({
   imagePath: { type: String, required: true }
 });
 
+if (!mongoose.connection.collections('Groups'))
+{
+    mongoose.createCollection('Collection', name='Groups');
+    console.log("creating collection...");
+}
 module.exports = mongoose.model("Group", groupSchema);

@@ -38,6 +38,7 @@ router.post(
   multer({ storage: storage }).single("image"),
   (req, res, next) => {
     const url = req.protocol + "://" + req.get("host");
+    console.log("post");
     const group = new Group({
       title: req.body.title,
       content: req.body.content,
