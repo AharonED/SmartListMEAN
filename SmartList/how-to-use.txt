@@ -1,0 +1,37 @@
+How to use
+----------
+
+Run "npm install" inside this project folder to install all dependencies.
+
+Make sure you use the latest version of the CLI (upgrade guide below)
+
+Run "ng serve" to see the app in action (try "npm start" in case "ng serve" fails).
+
+Feel free to compare it with your project code to spot any errors you might have.
+
+Start the server by typing:
+
+
+
+npm run start:server
+/Volumes/.System/Program Files/MongoDB/Server/3.4/bin
+
+
+https://mlab.com/databases/smartlistmean#collections
+USER:
+Aharon.work.mail@gmail.com
+
+Database: smartlistmean
+Database Users: 
+{
+    "_id": "smartlistmean.smartlistmean",
+    "user": "smartlistmean",
+    "db": "smartlistmean",
+    "roles": [
+        {
+            "role": "dbOwner",
+            "db": "smartlistmean"
+        }
+    ]
+}
+Password: Mazda5Gray

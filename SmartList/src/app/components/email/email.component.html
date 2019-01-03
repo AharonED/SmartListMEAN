@@ -1,0 +1,25 @@
+<mat-card>Simple card
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+  
+<div class="form-container">
+  <a routerLink="/login" id="goback">Go back</a>
+  <h2>Custom Login</h2>
+
+  <span class="error" *ngIf="error" [@fallIn]='state'>{{ error }}</span>
+
+  <form   [formGroup]="form" (submit)="onSubmit()" *ngIf="!isLoading">
+
+      <mat-form-field>
+          <input matInput type="text" formControlName="email" placeholder="Email address..">
+          <mat-error *ngIf="form.get('email').invalid">Please enter a Email address.</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="text" formControlName="password" placeholder="Password">
+            <mat-error *ngIf="form.get('password').invalid">Please enter a password.</mat-error>
+          </mat-form-field>
+    
+          <button mat-raised-button color="accent" type="submit" [disabled]="form.get('password').invalid" >Log in</button> 
+     <a routerLink="/signup" class="alc">Don't have an account?</a>
+</form>
+</div>
+</mat-card>

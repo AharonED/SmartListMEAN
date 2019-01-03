@@ -1,0 +1,20 @@
+<mat-toolbar color="primary">
+  <span>
+    <a routerLink="/">Smart List</a>
+  </span>
+  <span class="spacer"></span>
+  <ul>
+    <li>
+      <a mat-button routerLink="/create" routerLinkActive="mat-accent">New Note</a>
+    </li>
+  </ul>
+    <ul>
+     <li>
+        <a mat-button routerLink="/note-list" (submit)="onSubmit()"  routerLinkActive="mat-accent">
+          <button mat-icon-button (click)="logout()">
+              logout
+           </button>
+           </a>
+      </li>
+    </ul>
+</mat-toolbar>
