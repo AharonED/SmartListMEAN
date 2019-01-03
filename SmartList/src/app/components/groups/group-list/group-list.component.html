@@ -1,0 +1,19 @@
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<mat-accordion multi="true" *ngIf="groups.length > 0 && !isLoading">
+  <mat-expansion-panel *ngFor="let group of groups">
+    <mat-expansion-panel-header>
+      {{ group.title }}
+    </mat-expansion-panel-header>
+    <div class="group-image">
+      <img [src]="group.imagePath" [alt]="group.title">
+    </div>
+    <p>{{ group.content }}</p>
+    <mat-action-row>
+      <a mat-button color="primary" [routerLink]="['/edit', group.id]">EDIT</a>
+      <button mat-button color="warn" (click)="onDelete(group.id)">DELETE</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+</mat-accordion>
+<mat-paginator [length]="totalGroups" [pageSize]="groupsPerPage" [pageSizeOptions]="pageSizeOptions" (page)="onChangedPage($event)"
+  *ngIf="groups.length > 0"></mat-paginator>
+<p class="info-text mat-body-1" *ngIf="groups.length <= 0 && !isLoading">No groups added yet!</p>

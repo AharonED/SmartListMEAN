@@ -30,6 +30,8 @@ import { AuthService } from './auth.service';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from '../environments/environment';
+import { GroupCreateComponent } from './components/groups/group-create/group-create.component';
+import { GroupListComponent } from './components/groups/group-list/group-list.component';
 
 
 @NgModule({
@@ -40,7 +42,7 @@ import { environment } from '../environments/environment';
     NoteListComponent,
     //TasksComponent, 
     LoginComponent, 
-    EmailComponent, 
+    EmailComponent, GroupCreateComponent, GroupListComponent, 
     //SignupComponent
   ],
   imports: [

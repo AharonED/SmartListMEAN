@@ -1,7 +1,7 @@
 const express = require("express");
 const multer = require("multer");
 
-const Note = require("../models/note");
+const Group = require("../models/group");
 
 const router = express.Router();
 
@@ -38,17 +38,17 @@ router.post(
   multer({ storage: storage }).single("image"),
   (req, res, next) => {
     const url = req.protocol + "://" + req.get("host");
-    const note = new Note({
+    const group = new Group({
       title: req.body.title,
       content: req.body.content,
       imagePath: url + "/images/" + req.file.filename
     });
-    note.save().then(createdNote => {
+    group.save().then(createdGroup => {
       res.status(201).json({
-        message: "Note added successfully",
-        note: {
-          ...createdNote,
-          id: createdNote._id
+        message: "Group added successfully",
+        group: {
+          ...createdGroup,
+          id: createdGroup._id
         }
       });
     });
@@ -65,14 +65,14 @@ router.put(
       const url = req.protocol + "://" + req.get("host");
       imagePath = url + "/images/" + req.file.filename;
     }
-    const note = new Note({
+    const group = new Group({
       _id: req.body.id,
       title: req.body.title,
       content: req.body.content,
       imagePath: imagePath
     });
-    console.log(note);
-    Note.updateOne({ _id: req.params.id }, note).then(result => {
+    console.log(group);
+    Group.updateOne({ _id: req.params.id }, group).then(result => {
       res.status(200).json({ message: "Update successful!" });
     });
   }
@@ -82,41 +82,41 @@ router.put(
 router.get("", (req, res, next) => {
   const pageSize = +req.query.pagesize;
   const currentPage = +req.query.page;
-  const noteQuery = Note.find();
-  let fetchedNotes;
+  const groupQuery = Group.find();
+  let fetchedGroups;
   if (pageSize && currentPage) {
-    noteQuery.skip(pageSize * (currentPage - 1)).limit(pageSize);
+    groupQuery.skip(pageSize * (currentPage - 1)).limit(pageSize);
   }
-  noteQuery
+  groupQuery
     .then(documents => {
-      fetchedNotes = documents;
-      return Note.count();
+      fetchedGroups = documents;
+      return Group.count();
     })
     .then(count => {
       res.status(200).json({
-        message: "Notes fetched successfully!",
-        notes: fetchedNotes,
-        maxNotes: count
+        message: "Groups fetched successfully!",
+        groups: fetchedGroups,
+        maxGroups: count
       });
     });
 });
 
 //Get by ID
 router.get("/:id", (req, res, next) => {
-  Note.findById(req.params.id).then(note => {
-    if (note) {
-      res.status(200).json(note);
+  Group.findById(req.params.id).then(group => {
+    if (group) {
+      res.status(200).json(group);
     } else {
-      res.status(404).json({ message: "Note not found!" });
+      res.status(404).json({ message: "Group not found!" });
     }
   });
 });
 
 //Delete by ID
 router.delete("/:id", (req, res, next) => {
-  Note.deleteOne({ _id: req.params.id }).then(result => {
+  Group.deleteOne({ _id: req.params.id }).then(result => {
     console.log(result);
-    res.status(200).json({ message: "Note deleted!" });
+    res.status(200).json({ message: "Group deleted!" });
   });
 });
 

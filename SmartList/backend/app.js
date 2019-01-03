@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
 const notesRoutes = require("./routes/notes");
+const groupsRoutes = require("./routes/groups");
 
 const app = express();
 
@@ -40,6 +41,7 @@ app.use((req, res, next) => {
 });
 
 app.use("/api/notes", notesRoutes);
+app.use("/api/groups", groupsRoutes);
 app.use((req,res,next) => {
 	res.sendFile(path.join(__dirname,"angular",index.html));
 });

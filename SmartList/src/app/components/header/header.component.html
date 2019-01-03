@@ -8,9 +8,14 @@
       <a mat-button routerLink="/create" routerLinkActive="mat-accent">New Note</a>
     </li>
   </ul>
+  <ul>
+    <li>
+      <a mat-button routerLink="/group-list" routerLinkActive="mat-accent">Groups</a>
+    </li>
+  </ul>
     <ul>
      <li>
-        <a mat-button routerLink="/note-list" (submit)="onSubmit()"  routerLinkActive="mat-accent">
+        <a mat-button routerLink="/" (submit)="onSubmit()"  >
           <button mat-icon-button (click)="logout()">
               logout
            </button>
