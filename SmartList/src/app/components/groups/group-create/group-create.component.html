@@ -14,7 +14,7 @@
     </div>
     <mat-form-field>
       <textarea matInput rows="4" formControlName="description" placeholder="Group Description"></textarea>
-      <mat-error *ngIf="form.get('description').invalid">Please enter a group title.</mat-error>
+      <mat-error *ngIf="form.get('description').invalid">Please enter a group description.</mat-error>
     </mat-form-field>
     <button mat-raised-button color="accent" type="submit">Save Group</button>
   </form>

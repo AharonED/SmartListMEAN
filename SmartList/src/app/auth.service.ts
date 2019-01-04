@@ -93,11 +93,9 @@ isLoggedIn() {
     }
   }
 logout() {
-    console.log('logout');
     this._firebaseAuth.auth.signOut()
     .then((res) => 
     {
-      console.log('logout');
       this.userDetails = null;
       this.router.navigate(['/login-email']);
       

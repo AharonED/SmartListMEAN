@@ -30,6 +30,7 @@ const routes: Routes = [
   { path: 'login-email', component: EmailComponent },
 //  { path: 'tasks', component: TasksComponent}
   { path: 'group-create', component: GroupCreateComponent ,canActivate: [AuthGuard]},
+  { path: 'group-edit/:groupId', component: GroupCreateComponent ,canActivate: [AuthGuard]},
   { path: 'group-list', component: GroupListComponent ,canActivate: [AuthGuard]},
 ];
 

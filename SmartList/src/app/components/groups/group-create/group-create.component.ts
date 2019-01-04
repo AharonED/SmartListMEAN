@@ -32,15 +32,13 @@ export class GroupCreateComponent implements OnInit {
     public auth: AuthService//,
     //private router: Router
   ) {
-     if(this.auth) {
+/*      if(this.auth) {
         if(this.auth.isLoggedIn) {
-          console.log('-----------');
           return;
         }
       }
       //this.router.navigateByUrl('/login-email');
-      console.log('-----------+++++++++++++++++');
-  }
+ */  }
 
   ngOnInit() {
     this.form = new FormGroup({

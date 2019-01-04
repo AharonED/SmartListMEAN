@@ -41,7 +41,7 @@ router.post(
     console.log("post");
     const group = new Group({
       title: req.body.title,
-      content: req.body.content,
+      description: req.body.description,
       imagePath: url + "/images/" + req.file.filename
     });
     group.save().then(createdGroup => {
@@ -69,7 +69,7 @@ router.put(
     const group = new Group({
       _id: req.body.id,
       title: req.body.title,
-      content: req.body.content,
+      description: req.body.description,
       imagePath: imagePath
     });
     console.log(group);
