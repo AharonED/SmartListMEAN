@@ -16,6 +16,11 @@ import { EmailComponent } from './components/email/email.component';
 import { GroupCreateComponent } from './components/groups/group-create/group-create.component';
 import { GroupListComponent } from './components/groups/group-list/group-list.component';
 
+import { ChecklistCreateComponent } from './components/checklists/checklist-create/checklist-create.component';
+import { ChecklistListComponent } from './components/checklists/checklist-list/checklist-list.component';
+
+import { ChecklistItemsCreateComponent } from './components/checklistItems/checklist-items-create/checklist-items-create.component';
+import { ChecklistItemsListComponent } from './components/checklistItems/checklist-items-list/checklist-items-list.component';
 
 const routes: Routes = [
   //{ path: '', redirectTo: 'login-email', pathMatch: 'full' },
@@ -29,9 +34,18 @@ const routes: Routes = [
   //{ path: 'signup', component: SignupComponent },
   { path: 'login-email', component: EmailComponent },
 //  { path: 'tasks', component: TasksComponent}
-  { path: 'group-create', component: GroupCreateComponent ,canActivate: [AuthGuard]},
+//Groups
+{ path: 'group-create', component: GroupCreateComponent ,canActivate: [AuthGuard]},
   { path: 'group-edit/:groupId', component: GroupCreateComponent ,canActivate: [AuthGuard]},
   { path: 'group-list', component: GroupListComponent ,canActivate: [AuthGuard]},
+//Checklist
+  { path: 'checklist-create', component: ChecklistCreateComponent ,canActivate: [AuthGuard]},
+  { path: 'checklist-edit/:checklistId', component: ChecklistCreateComponent ,canActivate: [AuthGuard]},
+  { path: 'checklist-list', component: ChecklistListComponent ,canActivate: [AuthGuard]},
+//ChecklistItems
+  { path: 'checklistItem-create', component: ChecklistItemsCreateComponent ,canActivate: [AuthGuard]},
+  { path: 'checklistItem-edit/:checklistItemId', component: ChecklistItemsCreateComponent ,canActivate: [AuthGuard]},
+  { path: 'checklistItem-list', component: ChecklistItemsListComponent ,canActivate: [AuthGuard]},
 ];
 
 @NgModule({
