@@ -32,6 +32,8 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from '../environments/environment';
 import { GroupCreateComponent } from './components/groups/group-create/group-create.component';
 import { GroupListComponent } from './components/groups/group-list/group-list.component';
+import { ChecklistItemsCreateComponent } from './components/checklistItems/checklist-items-create/checklist-items-create.component';
+import { ChecklistItemsListComponent } from './components/checklistItems/checklist-items-list/checklist-items-list.component';
 
 
 @NgModule({
@@ -42,7 +44,7 @@ import { GroupListComponent } from './components/groups/group-list/group-list.co
     NoteListComponent,
     //TasksComponent, 
     LoginComponent, 
-    EmailComponent, GroupCreateComponent, GroupListComponent, 
+    EmailComponent, GroupCreateComponent, GroupListComponent, ChecklistItemsCreateComponent, ChecklistItemsListComponent, 
     //SignupComponent
   ],
   imports: [

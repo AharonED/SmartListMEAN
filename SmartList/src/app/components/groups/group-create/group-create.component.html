@@ -17,5 +17,6 @@
       <mat-error *ngIf="form.get('description').invalid">Please enter a group description.</mat-error>
     </mat-form-field>
     <button mat-raised-button color="accent" type="submit">Save Group</button>
+    <a mat-button color="primary" [routerLink]="['/group-edit', group.id]">Checklists</a>
   </form>
 </mat-card>
