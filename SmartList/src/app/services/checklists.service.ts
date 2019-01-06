@@ -5,6 +5,7 @@ import { map } from "rxjs/operators";
 import { Router } from "@angular/router";
 
 import { Checklist } from "../Model/checklist.model";
+import { group } from "@angular/animations";
 
 @Injectable({ providedIn: "root" })
 export class ChecklistsService {
@@ -13,8 +14,8 @@ export class ChecklistsService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  getChecklists(checklistsPerPage: number, currentPage: number) {
-    const queryParams = `?pagesize=${checklistsPerPage}&page=${currentPage}`;
+  getChecklists(checklistsPerPage: number, currentPage: number, group: string) {
+    const queryParams = `?pagesize=${checklistsPerPage}&page=${currentPage}&group=${group}`;
     this.http
       .get<{ message: string; checklists: any; maxChecklists: number }>(
         "http://localhost:3000/api/checklists" + queryParams
@@ -24,10 +25,11 @@ export class ChecklistsService {
           return {
             checklists: checklistData.checklists.map(checklist => {
               return {
+                id: checklist._id,
                 title: checklist.title,
                 description: checklist.description,
-                id: checklist._id,
-                imagePath: checklist.imagePath
+                imagePath: checklist.imagePath,
+                group: checklist.group
               };
             }),
             maxChecklists: checklistData.maxChecklists
@@ -53,25 +55,29 @@ export class ChecklistsService {
       title: string;
       description: string;
       imagePath: string;
+      group : string;
+      checklistItems: [string];
     }>("http://localhost:3000/api/checklists/" + id);
   }
 
-  addChecklist(title: string, description: string, image: File) {
+  addChecklist(title: string, description: string, image: File , group: string) {
     const checklistData = new FormData();
     checklistData.append("title", title);
     checklistData.append("description", description);
     checklistData.append("image", image, title);
+    checklistData.append("group", group);
+    //checklistData.append("checklistItems",checklistItems);
     this.http
       .post<{ message: string; checklist: Checklist }>(
         "http://localhost:3000/api/checklists",
         checklistData
       )
       .subscribe(responseData => {
-        this.router.navigate(["/checklist-list"]);
+        this.router.navigate(["/checklist-list/" + group]);
       });
   }
 
-  updateChecklist(id: string, title: string, description: string, image: File | string) {
+  updateChecklist(id: string, title: string, description: string, image: File | string, group: string, checklistItems: [string]) {
     let checklistData: Checklist | FormData;
     if (typeof image === "object") {
       checklistData = new FormData();
@@ -79,12 +85,16 @@ export class ChecklistsService {
       checklistData.append("title", title);
       checklistData.append("description", description);
       checklistData.append("image", image, title);
+      checklistData.append("group", group);
+    //checklistData.append("checklistItems",checklistItems);
     } else {
       checklistData = {
         id: id,
         title: title,
         description: description,
-        imagePath: image
+        imagePath: image,
+        group: group,
+        checklistItems: checklistItems
       };
     }
     this.http

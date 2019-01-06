@@ -32,6 +32,8 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from '../environments/environment';
 import { GroupCreateComponent } from './components/groups/group-create/group-create.component';
 import { GroupListComponent } from './components/groups/group-list/group-list.component';
+import { ChecklistCreateComponent } from './components/checklists/checklist-create/checklist-create.component';
+import { ChecklistListComponent } from './components/checklists/checklist-list/checklist-list.component';
 import { ChecklistItemsCreateComponent } from './components/checklistItems/checklist-items-create/checklist-items-create.component';
 import { ChecklistItemsListComponent } from './components/checklistItems/checklist-items-list/checklist-items-list.component';
 
@@ -44,7 +46,7 @@ import { ChecklistItemsListComponent } from './components/checklistItems/checkli
     NoteListComponent,
     //TasksComponent, 
     LoginComponent, 
-    EmailComponent, GroupCreateComponent, GroupListComponent, ChecklistItemsCreateComponent, ChecklistItemsListComponent, 
+    EmailComponent, GroupCreateComponent, GroupListComponent, ChecklistListComponent, ChecklistCreateComponent,  ChecklistItemsCreateComponent, ChecklistItemsListComponent, 
     //SignupComponent
   ],
   imports: [

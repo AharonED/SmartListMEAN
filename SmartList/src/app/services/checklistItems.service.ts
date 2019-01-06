@@ -24,10 +24,12 @@ export class ChecklistItemsService {
           return {
             checklistItems: checklistItemData.checklistItems.map(checklistItem => {
               return {
+                id: checklistItem._id,
                 title: checklistItem.title,
                 description: checklistItem.description,
-                id: checklistItem._id,
-                imagePath: checklistItem.imagePath
+                imagePath: checklistItem.imagePath,
+                group: checklistItem.group,
+                checklist: checklistItem.checklist
               };
             }),
             maxChecklistItems: checklistItemData.maxChecklistItems
@@ -53,15 +55,19 @@ export class ChecklistItemsService {
       title: string;
       description: string;
       imagePath: string;
+      group: string;
+      checklist: string;
     }>("http://localhost:3000/api/checklistItems/" + id);
   }
 
-  addChecklistItem(title: string, description: string, image: File) {
+  addChecklistItem(title: string, description: string, image: File, group: string, checklist: string) {
     const checklistItemData = new FormData();
     checklistItemData.append("title", title);
     checklistItemData.append("description", description);
     checklistItemData.append("image", image, title);
-    this.http
+    checklistItemData.append("group", group);
+    checklistItemData.append("checklist", checklist);
+this.http
       .post<{ message: string; checklistItem: ChecklistItem }>(
         "http://localhost:3000/api/checklistItems",
         checklistItemData
@@ -71,7 +77,7 @@ export class ChecklistItemsService {
       });
   }
 
-  updateChecklistItem(id: string, title: string, description: string, image: File | string) {
+  updateChecklistItem(id: string, title: string, description: string, image: File | string, group: string, checklist: string) {
     let checklistItemData: ChecklistItem | FormData;
     if (typeof image === "object") {
       checklistItemData = new FormData();
@@ -79,12 +85,16 @@ export class ChecklistItemsService {
       checklistItemData.append("title", title);
       checklistItemData.append("description", description);
       checklistItemData.append("image", image, title);
-    } else {
+      checklistItemData.append("group", group);
+      checklistItemData.append("checklist", checklist);
+      } else {
       checklistItemData = {
         id: id,
         title: title,
         description: description,
-        imagePath: image
+        imagePath: image,
+        group: group,
+        checklist: checklist,
       };
     }
     this.http

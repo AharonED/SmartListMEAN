@@ -27,7 +27,8 @@ export class GroupsService {
                 title: group.title,
                 description: group.description,
                 id: group._id,
-                imagePath: group.imagePath
+                imagePath: group.imagePath,
+                checklist: null
               };
             }),
             maxGroups: groupData.maxGroups

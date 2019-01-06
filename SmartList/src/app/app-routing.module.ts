@@ -39,9 +39,9 @@ const routes: Routes = [
   { path: 'group-edit/:groupId', component: GroupCreateComponent ,canActivate: [AuthGuard]},
   { path: 'group-list', component: GroupListComponent ,canActivate: [AuthGuard]},
 //Checklist
-  { path: 'checklist-create', component: ChecklistCreateComponent ,canActivate: [AuthGuard]},
+  { path: 'checklist-create/:groupId', component: ChecklistCreateComponent ,canActivate: [AuthGuard]},
   { path: 'checklist-edit/:checklistId', component: ChecklistCreateComponent ,canActivate: [AuthGuard]},
-  { path: 'checklist-list', component: ChecklistListComponent ,canActivate: [AuthGuard]},
+  { path: 'checklist-list/:groupId', component: ChecklistListComponent ,canActivate: [AuthGuard]},
 //ChecklistItems
   { path: 'checklistItem-create', component: ChecklistItemsCreateComponent ,canActivate: [AuthGuard]},
   { path: 'checklistItem-edit/:checklistItemId', component: ChecklistItemsCreateComponent ,canActivate: [AuthGuard]},

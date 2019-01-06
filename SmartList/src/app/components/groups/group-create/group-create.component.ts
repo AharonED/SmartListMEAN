@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit,Output } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { ActivatedRoute, ParamMap } from "@angular/router";
 
@@ -23,7 +23,7 @@ export class GroupCreateComponent implements OnInit {
   form: FormGroup;
   imagePreview: string;
   private mode = "create";
-  private groupId: string;
+  @Output() groupId: string;
 
   
   constructor(

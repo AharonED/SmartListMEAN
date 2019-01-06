@@ -81,6 +81,8 @@ router.put(
 
 //Get all
 router.get("", (req, res, next) => {
+  console.log("get method");
+
   const pageSize = +req.query.pagesize;
   const currentPage = +req.query.page;
   const checklistQuery = Checklist.find();
@@ -95,22 +97,56 @@ router.get("", (req, res, next) => {
     })
     .then(count => {
       res.status(200).json({
-        message: "Checklists fetched successfully!",
+        message: "Checklists fetched successfully!!!",
         checklists: fetchedChecklists,
         maxChecklists: count
       });
     });
 });
 
-//Get by ID
+
+//Get by ID, or All by GroupId
 router.get("/:id", (req, res, next) => {
-  Checklist.findById(req.params.id).then(checklist => {
-    if (checklist) {
-      res.status(200).json(checklist);
-    } else {
-      res.status(404).json({ message: "Checklist not found!" });
+/*  
+  console.log(req.params.length);
+
+  if(req.params.id==null)
+  {
+    console.log("get method by group id");
+
+    const pageSize = +req.query.pagesize;
+    const currentPage = +req.query.page;
+    const checklistQuery = Checklist.find();
+    let fetchedChecklists;
+    if (pageSize && currentPage) {
+      checklistQuery.skip(pageSize * (currentPage - 1)).limit(pageSize);
     }
-  });
+    checklistQuery
+      .then(documents => {
+        fetchedChecklists = documents;
+        return Checklist.count();
+      })
+      .then(count => {
+        res.status(200).json({
+          message: "Checklists fetched successfully!---",
+          checklists: fetchedChecklists,
+          maxChecklists: count
+        });
+      });
+   
+  }
+  else  {*/
+    console.log("get method checklist by id");
+    console.log(req.params.id);
+
+    Checklist.findById(req.params.id).then(checklist => {
+      if (checklist) {
+        res.status(200).json(checklist);
+      } else {
+        res.status(404).json({ message: "Checklist not found!" });
+      }
+    });
+  //}
 });
 
 //Delete by ID
