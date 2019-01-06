@@ -100,7 +100,7 @@ export class ChecklistsService {
     this.http
       .put("http://localhost:3000/api/checklists/" + id, checklistData)
       .subscribe(response => {
-        this.router.navigate(["/checklist-list"]);
+        this.router.navigate(["/checklist-list/" + group]);
       });
   }
 

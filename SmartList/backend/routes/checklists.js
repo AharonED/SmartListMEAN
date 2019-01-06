@@ -39,10 +39,12 @@ router.post(
   (req, res, next) => {
     const url = req.protocol + "://" + req.get("host");
     console.log("post");
+    console.log("GroupID=" + req.body.group);
     const checklist = new Checklist({
       title: req.body.title,
       description: req.body.description,
-      imagePath: url + "/images/" + req.file.filename
+      imagePath: url + "/images/" + req.file.filename,
+      group: req.body.group
     });
     checklist.save().then(createdChecklist => {
       res.status(201).json({
@@ -70,7 +72,8 @@ router.put(
       _id: req.body.id,
       title: req.body.title,
       description: req.body.description,
-      imagePath: imagePath
+      imagePath: imagePath,
+      group: req.body.group
     });
     console.log(checklist);
     Checklist.updateOne({ _id: req.params.id }, checklist).then(result => {

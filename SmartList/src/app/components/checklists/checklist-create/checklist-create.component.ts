@@ -113,7 +113,7 @@ export class ChecklistCreateComponent implements OnInit {
         this.form.value.title,
         this.form.value.description,
         this.form.value.image,
-        this.form.value.group        
+        this.form.value.groupId        
       );
     } else {
       this.checklistsService.updateChecklist(
@@ -121,7 +121,7 @@ export class ChecklistCreateComponent implements OnInit {
         this.form.value.title,
         this.form.value.description,
         this.form.value.image,
-        this.form.value.group ,
+        this.form.value.groupId ,
         null       
       );
     }

@@ -20,5 +20,5 @@
 
 <div *ngIf="checklists.length <= 0 && !isLoading"> 
   <p class="info-text mat-body-1" >No Checklist added yet!</p>
-  <a mat-button [routerLink]="['/checklist-create', groupId]"routerLinkActive="mat-accent">New Checklist</a>
 </div>
+<a mat-button color="primary"  [routerLink]="['/checklist-create', groupId]"routerLinkActive="mat-accent">New Checklist</a>
