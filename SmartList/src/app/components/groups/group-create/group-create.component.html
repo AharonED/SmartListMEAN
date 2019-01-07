@@ -18,9 +18,11 @@
     </mat-form-field>
     <br>
     <button mat-raised-button color="primary" type="submit">Save Group</button>
-    <a mat-button color="primary" [routerLink]="['/checklist-create', form.value.id]">Checklists</a> 
+    <a mat-button  *ngIf="groupId" color="primary" [routerLink]="['/checklist-list', groupId]">Checklists</a> 
     <br>
-    <app-checklist-list groupId={{groupId}} >
+    <br>
+    <br>
+    <app-checklist-list  *ngIf="groupId" groupId={{groupId}} >
 
     </app-checklist-list>
   </form>

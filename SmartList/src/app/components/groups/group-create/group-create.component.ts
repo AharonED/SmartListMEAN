@@ -64,6 +64,7 @@ export class GroupCreateComponent implements OnInit {
             description: groupData.description,
             imagePath: groupData.imagePath
           };
+          this.imagePreview = groupData.imagePath;
           this.form.setValue({
             title: this.group.title,
             description: this.group.description,
