@@ -1,5 +1,6 @@
 const express = require("express");
 const multer = require("multer");
+const ObjectId = require('mongodb').ObjectId; 
 
 const ChecklistItems = require("../models/checklistItem");
 
@@ -39,10 +40,12 @@ router.post(
   (req, res, next) => {
     const url = req.protocol + "://" + req.get("host");
     console.log("post");
+    console.log("ChecklistId=" + req.body.checklistId);
     const checklistItems = new ChecklistItems({
       title: req.body.title,
       description: req.body.description,
-      imagePath: url + "/images/" + req.file.filename
+      imagePath: url + "/images/" + req.file.filename,
+      checklistId: req.body.checklistId
     });
     checklistItems.save().then(createdChecklistItems => {
       res.status(201).json({
@@ -70,7 +73,8 @@ router.put(
       _id: req.body.id,
       title: req.body.title,
       description: req.body.description,
-      imagePath: imagePath
+      imagePath: imagePath,
+      checklistId: req.body.checklistId
     });
     console.log(checklistItems);
     ChecklistItems.updateOne({ _id: req.params.id }, checklistItems).then(result => {
@@ -81,36 +85,83 @@ router.put(
 
 //Get all
 router.get("", (req, res, next) => {
+  console.log("get method");
+  
   const pageSize = +req.query.pagesize;
   const currentPage = +req.query.page;
-  const checklistItemsQuery = ChecklistItems.find();
-  let fetchedChecklistItemss;
+  const checklistId = req.query.checklistId;
+
+  console.log("checklistId:" + checklistId);
+  console.log("checklistId:" + req.query.checklistId);
+
+
+  //  const checklistItemsQuery = ChecklistItems.find();
+//  const checklistItemsQuery = ChecklistItems.find({"_id": ObjectId("5c331a3c0f7e35027a92d48d")});
+//const checklistItemsQuery = ChecklistItems.find({"checklistId.$oid": ObjectId("5c2f13011c600e038f77a8b2")});
+const checklistItemsQuery = ChecklistItems.find().where('checklistId').equals(ObjectId(checklistId)) ;
+
+  
+  let fetchedChecklistItems;
   if (pageSize && currentPage) {
     checklistItemsQuery.skip(pageSize * (currentPage - 1)).limit(pageSize);
   }
   checklistItemsQuery
     .then(documents => {
-      fetchedChecklistItemss = documents;
+      fetchedChecklistItems = documents;
       return ChecklistItems.count();
     })
     .then(count => {
       res.status(200).json({
-        message: "ChecklistItemss fetched successfully!",
-        checklistItemss: fetchedChecklistItemss,
-        maxChecklistItemss: count
+        message: "ChecklistItems fetched successfully!!!",
+        checklistItems: fetchedChecklistItems,
+        maxChecklistItems: count
       });
     });
 });
 
-//Get by ID
+
+//Get by ID, or All by ChecklistId
 router.get("/:id", (req, res, next) => {
-  ChecklistItems.findById(req.params.id).then(checklistItems => {
-    if (checklistItems) {
-      res.status(200).json(checklistItems);
-    } else {
-      res.status(404).json({ message: "ChecklistItems not found!" });
+/*  
+  console.log(req.params.length);
+
+  if(req.params.id==null)
+  {
+    console.log("get method by checklistId id");
+
+    const pageSize = +req.query.pagesize;
+    const currentPage = +req.query.page;
+    const checklistItemsQuery = ChecklistItems.find();
+    let fetchedChecklistItems;
+    if (pageSize && currentPage) {
+      checklistItemsQuery.skip(pageSize * (currentPage - 1)).limit(pageSize);
     }
-  });
+    checklistItemsQuery
+      .then(documents => {
+        fetchedChecklistItems = documents;
+        return ChecklistItems.count();
+      })
+      .then(count => {
+        res.status(200).json({
+          message: "ChecklistItems fetched successfully!---",
+          checklistItems: fetchedChecklistItems,
+          maxChecklistItems: count
+        });
+      });
+   
+  }
+  else  {*/
+    console.log("get method checklistItems by id");
+    console.log(req.params.id);
+
+    ChecklistItems.findById(req.params.id).then(checklistItems => {
+      if (checklistItems) {
+        res.status(200).json(checklistItems);
+      } else {
+        res.status(404).json({ message: "ChecklistItems not found!" });
+      }
+    });
+  //}
 });
 
 //Delete by ID

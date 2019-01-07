@@ -5,7 +5,7 @@ const checklistSchema = mongoose.Schema({
   title: { type: String, required: true },
   description: { type: String, required: true },
   imagePath: { type: String, required: false },
-  checklist : { type: Schema.Types.ObjectId, ref: 'Checklist' }
+  checklistId : { type: Schema.Types.ObjectId, ref: 'Checklist' }
 }, { autoCreate: true});
 
     console.log("Creating ChecklistItem collection...");

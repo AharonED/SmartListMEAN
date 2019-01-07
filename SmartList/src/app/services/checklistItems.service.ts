@@ -5,47 +5,48 @@ import { map } from "rxjs/operators";
 import { Router } from "@angular/router";
 
 import { ChecklistItem } from "../Model/checklistItem.model";
+import { group } from "@angular/animations";
 
 @Injectable({ providedIn: "root" })
 export class ChecklistItemsService {
   private checklistItems: ChecklistItem[] = [];
-  private checklistItemsUpdated = new Subject<{ checklistItems: ChecklistItem[]; checklistItemCount: number }>();
+  private checklistItemsUpdated = new Subject<{ checklistItems: ChecklistItem[]; checklistItemsCount: number }>();
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  getChecklistItems(checklistItemsPerPage: number, currentPage: number) {
-    const queryParams = `?pagesize=${checklistItemsPerPage}&page=${currentPage}`;
+  getChecklistItems(checklistItemsPerPage: number, currentPage: number, checklistId: string) {
+    const queryParams = `?pagesize=${checklistItemsPerPage}&page=${currentPage}&checklistId=${checklistId}`;
+    console.log(checklistId);
     this.http
       .get<{ message: string; checklistItems: any; maxChecklistItems: number }>(
         "http://localhost:3000/api/checklistItems" + queryParams
       )
       .pipe(
-        map(checklistItemData => {
+        map(checklistItemsData => {
           return {
-            checklistItems: checklistItemData.checklistItems.map(checklistItem => {
+            checklistItems: checklistItemsData.checklistItems.map(checklistItems => {
               return {
-                id: checklistItem._id,
-                title: checklistItem.title,
-                description: checklistItem.description,
-                imagePath: checklistItem.imagePath,
-                group: checklistItem.group,
-                checklist: checklistItem.checklist
+                id: checklistItems._id,
+                title: checklistItems.title,
+                description: checklistItems.description,
+                imagePath: checklistItems.imagePath,
+                checklistId: checklistItems.checklistId
               };
             }),
-            maxChecklistItems: checklistItemData.maxChecklistItems
+            maxChecklistItems: checklistItemsData.maxChecklistItems
           };
         })
       )
-      .subscribe(transformedChecklistItemData => {
-        this.checklistItems = transformedChecklistItemData.checklistItems;
+      .subscribe(transformedChecklistItemsData => {
+        this.checklistItems = transformedChecklistItemsData.checklistItems;
         this.checklistItemsUpdated.next({
           checklistItems: [...this.checklistItems],
-          checklistItemCount: transformedChecklistItemData.maxChecklistItems
+          checklistItemsCount: transformedChecklistItemsData.maxChecklistItems
         });
       });
   }
 
-  getChecklistItemUpdateListener() {
+  getChecklistItemsUpdateListener() {
     return this.checklistItemsUpdated.asObservable();
   }
 
@@ -55,57 +56,56 @@ export class ChecklistItemsService {
       title: string;
       description: string;
       imagePath: string;
-      group: string;
-      checklist: string;
+      checklistId : string;
     }>("http://localhost:3000/api/checklistItems/" + id);
   }
 
-  addChecklistItem(title: string, description: string, image: File, group: string, checklist: string) {
-    const checklistItemData = new FormData();
-    checklistItemData.append("title", title);
-    checklistItemData.append("description", description);
-    checklistItemData.append("image", image, title);
-    checklistItemData.append("group", group);
-    checklistItemData.append("checklist", checklist);
-this.http
-      .post<{ message: string; checklistItem: ChecklistItem }>(
+  addChecklistItems(title: string, description: string, image: File , checklistId: string) {
+    const checklistItemsData = new FormData();
+    checklistItemsData.append("title", title);
+    checklistItemsData.append("description", description);
+    checklistItemsData.append("image", image, title);
+    checklistItemsData.append("checklistId", checklistId);
+    console.log(checklistId);
+    //checklistItemsData.append("checklistItemsItems",checklistItemsItems);
+    this.http
+      .post<{ message: string; checklistItems: ChecklistItem }>(
         "http://localhost:3000/api/checklistItems",
-        checklistItemData
+        checklistItemsData
       )
       .subscribe(responseData => {
-        this.router.navigate(["/checklistItem-list"]);
+        this.router.navigate(["/checklistItem-list/" + checklistId]);
       });
   }
 
-  updateChecklistItem(id: string, title: string, description: string, image: File | string, group: string, checklist: string) {
-    let checklistItemData: ChecklistItem | FormData;
+  updateChecklistItems(id: string, title: string, description: string, image: File | string, checklistId: string, checklistItemsItems: [string]) {
+    let checklistItemsData: ChecklistItem | FormData;
     if (typeof image === "object") {
-      checklistItemData = new FormData();
-      checklistItemData.append("id", id);
-      checklistItemData.append("title", title);
-      checklistItemData.append("description", description);
-      checklistItemData.append("image", image, title);
-      checklistItemData.append("group", group);
-      checklistItemData.append("checklist", checklist);
-      } else {
-      checklistItemData = {
+      checklistItemsData = new FormData();
+      checklistItemsData.append("id", id);
+      checklistItemsData.append("title", title);
+      checklistItemsData.append("description", description);
+      checklistItemsData.append("image", image, title);
+      checklistItemsData.append("checklistId", checklistId);
+    //checklistItemsData.append("checklistItemsItems",checklistItemsItems);
+    } else {
+      checklistItemsData = {
         id: id,
         title: title,
         description: description,
         imagePath: image,
-        group: group,
-        checklist: checklist,
+        checklistId: checklistId
       };
     }
     this.http
-      .put("http://localhost:3000/api/checklistItems/" + id, checklistItemData)
+      .put("http://localhost:3000/api/checklistItems/" + id, checklistItemsData)
       .subscribe(response => {
-        this.router.navigate(["/checklistItem-list"]);
+        this.router.navigate(["/checklistItem-list/" + checklistId]);
       });
   }
 
-  deleteChecklistItem(checklistItemId: string) {
+  deleteChecklistItems(checklistItemsId: string) {
     return this.http
-      .delete("http://localhost:3000/api/checklistItems/" + checklistItemId);
+      .delete("http://localhost:3000/api/checklistItems/" + checklistItemsId);
   }
 }

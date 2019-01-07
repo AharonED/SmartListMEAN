@@ -3,6 +3,5 @@ export interface ChecklistItem {
   title: string;
   description: string;
   imagePath: string;
-  group: string;
-  checklist: string;//FK
+  checklistId: string;//FK
 }

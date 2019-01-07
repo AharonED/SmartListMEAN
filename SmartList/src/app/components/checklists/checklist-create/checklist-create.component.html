@@ -21,5 +21,12 @@
     </mat-form-field>
     <button mat-raised-button color="accent" type="submit">Save Checklist</button>
 
+    <a mat-button  *ngIf="checklistId" color="primary" [routerLink]="['/checklistItem-list', checklistId]">Checklist Items</a> 
+    <br>
+    <br>
+    <br>
+    <app-checklistItem-list  *ngIf="checklistId" checklistId={{checklistId}} >
+
+    </app-checklistItem-list>
   </form>
 </mat-card>

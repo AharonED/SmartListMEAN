@@ -43,9 +43,9 @@ const routes: Routes = [
   { path: 'checklist-edit/:checklistId', component: ChecklistCreateComponent ,canActivate: [AuthGuard]},
   { path: 'checklist-list/:groupId', component: ChecklistListComponent ,canActivate: [AuthGuard]},
 //ChecklistItems
-  { path: 'checklistItem-create', component: ChecklistItemsCreateComponent ,canActivate: [AuthGuard]},
+  { path: 'checklistItem-create/:checklistId', component: ChecklistItemsCreateComponent ,canActivate: [AuthGuard]},
   { path: 'checklistItem-edit/:checklistItemId', component: ChecklistItemsCreateComponent ,canActivate: [AuthGuard]},
-  { path: 'checklistItem-list', component: ChecklistItemsListComponent ,canActivate: [AuthGuard]},
+  { path: 'checklistItem-list/:checklistId', component: ChecklistItemsListComponent ,canActivate: [AuthGuard]},
 ];
 
 @NgModule({

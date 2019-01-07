@@ -1,3 +1,25 @@
-<p>
-  checklist-items-list works!
-</p>
+<span class="header">ChecklistItems</span>
+<a mat-button color="primary"  [routerLink]="['/checklistItem-create', checklistId]"routerLinkActive="mat-accent">New ChecklistItems</a>
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<mat-accordion multi="true" *ngIf="checklistItems.length > 0 && !isLoading">
+  <mat-expansion-panel *ngFor="let checklistItems of checklistItems">
+    <mat-expansion-panel-header>
+      {{ checklistItems.title }}
+    </mat-expansion-panel-header>
+    <div class="checklistItems-image">
+      <img [src]="checklistItems.imagePath" [alt]="checklistItems.title">
+    </div>
+    <p>{{ checklistItems.content }}</p>
+    <mat-action-row>
+      <a mat-button color="primary" [routerLink]="['/checklistItems-edit', checklistItems.id]">EDIT</a>
+      <button mat-button color="warn" (click)="onDelete(checklistItems.id)">DELETE</button>
+      <!--<a mat-button color="primary" [routerLink]="['/checklistItem-list', checklistItems.id]">ChecklistItems</a>-->
+    </mat-action-row>
+  </mat-expansion-panel>
+</mat-accordion>
+<mat-paginator [length]="totalChecklistItems" [pageSize]="checklistItemsPerPage" [pageSizeOptions]="pageSizeOptions" (page)="onChangedPage($event)"
+  *ngIf="checklistItems.length > 0"></mat-paginator>
+
+<div *ngIf="checklistItems.length <= 0 && !isLoading"> 
+  <p class="info-text mat-body-1" >No ChecklistItems added yet!</p>
+</div>
