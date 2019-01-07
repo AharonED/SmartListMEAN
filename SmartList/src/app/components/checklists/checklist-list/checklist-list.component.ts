@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Component, OnInit, OnDestroy, Input, Output } from "@angular/core";
 import { PageEvent } from "@angular/material";
 import { Subscription } from "rxjs";
 
@@ -17,7 +17,7 @@ export class ChecklistListComponent implements OnInit, OnDestroy {
   //@Input() ChecklistID:number=-1;
   //@Output() ChecklistId: string;
 
-  groupId: string ='5c2f13011c600e038f77a8b2';
+  @Input() groupId: string ='-1';
 
   checklists: Checklist[] = [];
   isLoading = false;
@@ -35,11 +35,12 @@ export class ChecklistListComponent implements OnInit, OnDestroy {
 
       this.route.paramMap.subscribe((paramMap: ParamMap) => {
         if (paramMap.has("groupId"))
-          this.groupId = paramMap.get("groupId");
-        else
-          this.groupId="5c2f13011c600e038f77a8b2";
+        {
+//          if(this.groupId=="-1") 
+            this.groupId = paramMap.get("groupId");
+        }
       
-          console.log(this.groupId);
+          console.log("this.groupId - list" + this.groupId);
 
           this.checklistsService.getChecklists(this.checklistsPerPage, this.currentPage, this.groupId);
           this.checklistsSub = this.checklistsService

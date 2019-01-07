@@ -60,7 +60,7 @@ export class ChecklistCreateComponent implements OnInit {
         this.groupId="-1";
       }
 
-      console.log(this.groupId);
+      console.log("this.groupId" + this.groupId);
 
       if (paramMap.has("checklistId")) {
         this.mode = "edit";
@@ -68,6 +68,7 @@ export class ChecklistCreateComponent implements OnInit {
         this.isLoading = true;
         this.checklistsService.getChecklist(this.checklistId).subscribe(checklistData => {
           this.isLoading = false;
+          console.log("checklistData.group" + checklistData.group)
           this.checklist = {
             id: checklistData._id,
             title: checklistData.title,
@@ -76,12 +77,17 @@ export class ChecklistCreateComponent implements OnInit {
             group: checklistData.group,
             checklistItems: null
           };
+          
+          if(this.groupId=="-1")
+            this.groupId = checklistData.group;
+
           this.form.setValue({
+            //id: this.checklist.id,
             title: this.checklist.title,
             description: this.checklist.description,
             image: this.checklist.imagePath,
-            id: this.checklist.id,
-            group: this.checklist.group,
+            group: this.checklist.group//,
+            //checklistItems: null
           });
         });
       } else {
@@ -109,11 +115,15 @@ export class ChecklistCreateComponent implements OnInit {
     }
     this.isLoading = true;
     if (this.mode === "create") {
+      if(this.form.value.group==null )
+        this.form.value.group =this.groupId;
+
+      console.log("this.form.value.group " + this.form.value.group );
       this.checklistsService.addChecklist(
         this.form.value.title,
         this.form.value.description,
         this.form.value.image,
-        this.form.value.groupId        
+        this.form.value.group        
       );
     } else {
       this.checklistsService.updateChecklist(
@@ -121,7 +131,7 @@ export class ChecklistCreateComponent implements OnInit {
         this.form.value.title,
         this.form.value.description,
         this.form.value.image,
-        this.form.value.groupId ,
+        this.form.value.group ,
         null       
       );
     }

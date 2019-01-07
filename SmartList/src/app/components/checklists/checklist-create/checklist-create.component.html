@@ -2,7 +2,7 @@
   <mat-spinner *ngIf="isLoading"></mat-spinner>
   <form [formGroup]="form" (submit)="onSaveChecklist()" *ngIf="!isLoading">
     <mat-form-field>
-      <input matInput type="text" formControlName="group" value={{groupId}} placeholder="Group ID">
+      <input matInput type="text" formControlName="group" [value]="groupId" placeholder="Group ID">
     </mat-form-field> <br>
     <mat-form-field>
       <input matInput type="text" formControlName="title" placeholder="Checklist Title">

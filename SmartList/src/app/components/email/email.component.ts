@@ -46,7 +46,7 @@ export class EmailComponent implements OnInit {
         .then(
         (success) => {
         console.log(success);
-        this.router.navigate(['/note-list']);
+        this.router.navigate(['/group-list']);
       }).catch(
         (err) => {
         console.log(err);

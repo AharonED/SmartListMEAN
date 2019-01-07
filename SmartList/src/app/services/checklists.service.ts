@@ -66,6 +66,7 @@ export class ChecklistsService {
     checklistData.append("description", description);
     checklistData.append("image", image, title);
     checklistData.append("group", group);
+    console.log(group);
     //checklistData.append("checklistItems",checklistItems);
     this.http
       .post<{ message: string; checklist: Checklist }>(
