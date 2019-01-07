@@ -19,7 +19,7 @@
       <textarea matInput rows="4" formControlName="description" placeholder="Checklist Description"></textarea>
       <mat-error *ngIf="form.get('description').invalid">Please enter a checklist description.</mat-error>
     </mat-form-field>
-    <button mat-raised-button color="accent" type="submit">Save Checklist</button>
+    <button mat-raised-button color="primary" type="submit">Save Checklist</button>
 
     <a mat-button  *ngIf="checklistId" color="primary" [routerLink]="['/checklistItem-list', checklistId]">Checklist Items</a> 
     <br>
