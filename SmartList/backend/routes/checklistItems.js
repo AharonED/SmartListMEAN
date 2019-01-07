@@ -45,7 +45,8 @@ router.post(
       title: req.body.title,
       description: req.body.description,
       imagePath: url + "/images/" + req.file.filename,
-      checklistId: req.body.checklistId
+      checklistId: req.body.checklistId,
+      isDone: req.body.isDone
     });
     checklistItems.save().then(createdChecklistItems => {
       res.status(201).json({
@@ -74,7 +75,8 @@ router.put(
       title: req.body.title,
       description: req.body.description,
       imagePath: imagePath,
-      checklistId: req.body.checklistId
+      checklistId: req.body.checklistId,
+      isDone: req.body.isDone
     });
     console.log(checklistItems);
     ChecklistItems.updateOne({ _id: req.params.id }, checklistItems).then(result => {
@@ -90,6 +92,8 @@ router.get("", (req, res, next) => {
   const pageSize = +req.query.pagesize;
   const currentPage = +req.query.page;
   const checklistId = req.query.checklistId;
+  const isDone = req.body.isDone;
+
 
   console.log("checklistId:" + checklistId);
   console.log("checklistId:" + req.query.checklistId);

@@ -4,4 +4,5 @@ export interface ChecklistItem {
   description: string;
   imagePath: string;
   checklistId: string;//FK
+  isDone: boolean;
 }

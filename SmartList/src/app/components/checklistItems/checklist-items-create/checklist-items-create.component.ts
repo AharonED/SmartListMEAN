@@ -24,8 +24,9 @@ export class ChecklistItemsCreateComponent implements OnInit {
   form: FormGroup;
   imagePreview: string;
   private mode = "create";
-  private checklistItemsId: string;
+  private checklistItemId: string;
   private checklistId: string;
+  private isDone: boolean;
 
   
   constructor(
@@ -46,7 +47,8 @@ export class ChecklistItemsCreateComponent implements OnInit {
       image: new FormControl(null, {
         validators: [Validators.required],
         asyncValidators: [mimeType]
-      })
+      }),
+      isDone: new FormControl(null,null)
     });
 
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
@@ -62,20 +64,25 @@ export class ChecklistItemsCreateComponent implements OnInit {
 
       console.log("this.checklistId" + this.checklistId);
 
-      if (paramMap.has("checklistItemsId")) {
+      if (paramMap.has("checklistItemId")) {
         this.mode = "edit";
-        this.checklistItemsId = paramMap.get("checklistItemsId");
+        this.checklistItemId = paramMap.get("checklistItemId");
         this.isLoading = true;
-        this.checklistItemsService.getChecklistItem(this.checklistItemsId).subscribe(checklistItemsData => {
+        this.checklistItemsService.getChecklistItem(this.checklistItemId).subscribe(checklistItemsData => {
           this.isLoading = false;
-          console.log("checklistItemsData.checklistId" + checklistItemsData.checklistId)
+          console.log("checklistItemsData.checklistId" + checklistItemsData.checklistId);
+          console.log("checklistItemsData.isDone" + checklistItemsData.isDone);
+          
           this.checklistItems = {
             id: checklistItemsData._id,
             title: checklistItemsData.title,
             description: checklistItemsData.description,
             imagePath: checklistItemsData.imagePath,
-            checklistId: checklistItemsData.checklistId
+            checklistId: checklistItemsData.checklistId,
+            isDone: checklistItemsData.isDone
           };
+          
+          this.isDone=checklistItemsData.isDone;
           
           if(this.checklistId=="-1")
             this.checklistId = checklistItemsData.checklistId;
@@ -85,13 +92,13 @@ export class ChecklistItemsCreateComponent implements OnInit {
             title: this.checklistItems.title,
             description: this.checklistItems.description,
             image: this.checklistItems.imagePath,
-            checklistId: this.checklistItems.checklistId//,
-            //checklistItemsItems: null
+            checklistId: this.checklistItems.checklistId,
+            isDone: this.checklistItems.isDone
           });
         });
       } else {
         this.mode = "create";
-        this.checklistItemsId = null;
+        this.checklistItemId = null;
         //this.form.value.checklistId   = this.checklistId;
       }
     });
@@ -118,22 +125,30 @@ export class ChecklistItemsCreateComponent implements OnInit {
         this.form.value.checklistId =this.checklistId;
 
       console.log("this.form.value.checklistId " + this.form.value.checklistId );
+      console.log("this.form.value.isDone     " + this.form.value.isDone     );
       this.checklistItemsService.addChecklistItems(
         this.form.value.title,
         this.form.value.description,
         this.form.value.image,
-        this.form.value.checklistId        
+        this.form.value.checklistId,
+        this.form.value.isDone  
       );
     } else {
       this.checklistItemsService.updateChecklistItems(
-        this.checklistItemsId,
+        this.checklistItemId,
         this.form.value.title,
         this.form.value.description,
         this.form.value.image,
         this.form.value.checklistId ,
-        null       
+        this.form.value.isDone       
       );
     }
     this.form.reset();
   }
+
+  OnIndeterminateChange($event){
+    console.log($event); 
+    this.isDone=$event;//true or false
+ }
+ 
 }

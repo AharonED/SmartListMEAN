@@ -11,7 +11,7 @@
     </div>
     <p>{{ checklistItems.content }}</p>
     <mat-action-row>
-      <a mat-button color="primary" [routerLink]="['/checklistItems-edit', checklistItems.id]">EDIT</a>
+      <a mat-button color="primary" [routerLink]="['/checklistItem-edit', checklistItems.id]">EDIT</a>
       <button mat-button color="warn" (click)="onDelete(checklistItems.id)">DELETE</button>
       <!--<a mat-button color="primary" [routerLink]="['/checklistItem-list', checklistItems.id]">ChecklistItems</a>-->
     </mat-action-row>

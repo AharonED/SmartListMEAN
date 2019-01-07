@@ -25,12 +25,15 @@ export class ChecklistItemsService {
         map(checklistItemsData => {
           return {
             checklistItems: checklistItemsData.checklistItems.map(checklistItems => {
+              console.log("checklistItems.isDone" + checklistItems.isDone);
+
               return {
                 id: checklistItems._id,
                 title: checklistItems.title,
                 description: checklistItems.description,
                 imagePath: checklistItems.imagePath,
-                checklistId: checklistItems.checklistId
+                checklistId: checklistItems.checklistId,
+                isDone: checklistItems.isDone
               };
             }),
             maxChecklistItems: checklistItemsData.maxChecklistItems
@@ -57,15 +60,17 @@ export class ChecklistItemsService {
       description: string;
       imagePath: string;
       checklistId : string;
+      isDone: boolean;
     }>("http://localhost:3000/api/checklistItems/" + id);
   }
 
-  addChecklistItems(title: string, description: string, image: File , checklistId: string) {
+  addChecklistItems(title: string, description: string, image: File , checklistId: string, isDone: boolean) {
     const checklistItemsData = new FormData();
     checklistItemsData.append("title", title);
     checklistItemsData.append("description", description);
     checklistItemsData.append("image", image, title);
     checklistItemsData.append("checklistId", checklistId);
+    checklistItemsData.append("isDone", (isDone==true?'true':'false'));
     console.log(checklistId);
     //checklistItemsData.append("checklistItemsItems",checklistItemsItems);
     this.http
@@ -78,7 +83,7 @@ export class ChecklistItemsService {
       });
   }
 
-  updateChecklistItems(id: string, title: string, description: string, image: File | string, checklistId: string, checklistItemsItems: [string]) {
+  updateChecklistItems(id: string, title: string, description: string, image: File | string, checklistId: string, isDone: boolean) {
     let checklistItemsData: ChecklistItem | FormData;
     if (typeof image === "object") {
       checklistItemsData = new FormData();
@@ -87,6 +92,7 @@ export class ChecklistItemsService {
       checklistItemsData.append("description", description);
       checklistItemsData.append("image", image, title);
       checklistItemsData.append("checklistId", checklistId);
+      checklistItemsData.append("isDone",  (isDone==true?'true':'false'));
     //checklistItemsData.append("checklistItemsItems",checklistItemsItems);
     } else {
       checklistItemsData = {
@@ -94,8 +100,10 @@ export class ChecklistItemsService {
         title: title,
         description: description,
         imagePath: image,
-        checklistId: checklistId
+        checklistId: checklistId,
+        isDone: isDone
       };
+      console.log("checklistItemsData.isDone" + checklistItemsData.isDone);
     }
     this.http
       .put("http://localhost:3000/api/checklistItems/" + id, checklistItemsData)

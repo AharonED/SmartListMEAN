@@ -5,12 +5,13 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import {
   MatInputModule,
+  MatCheckboxModule,
   MatCardModule,
   MatButtonModule,
   MatToolbarModule,
   MatExpansionModule,
   MatProgressSpinnerModule,
-  MatPaginatorModule
+  MatPaginatorModule 
 } from "@angular/material";
 
 import { AppComponent } from "./app.component";
@@ -55,6 +56,7 @@ import { ChecklistItemsListComponent } from './components/checklistItems/checkli
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatInputModule,
+    MatCheckboxModule,
     MatCardModule,
     MatButtonModule,
     MatToolbarModule,

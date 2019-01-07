@@ -19,6 +19,16 @@
       <textarea matInput rows="4" formControlName="description" placeholder="ChecklistItems Description"></textarea>
       <mat-error *ngIf="form.get('description').invalid">Please enter a checklistItems description.</mat-error>
     </mat-form-field>
+      <br>
+      <input type="checkbox" [checked]='isDone' formControlName="isDone" placeholder="Done">
+      <!-- <input type="checkbox" [checked]="task.isDone" (click)="updateStatus(task)"> -->
+<!--
+       <mat-form-field>
+        <mat-checkbox id="isDone" formControlName="isDone" (indeterminateChange)="OnIndeterminateChange($event)"
+        [(checked)]="isDone" >Done</mat-checkbox>
+      </mat-form-field>
+-->
+      <br>
     <button mat-raised-button color="accent" type="submit">Save ChecklistItems</button>
 
     </form>
