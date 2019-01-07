@@ -22,7 +22,7 @@ export class ChecklistListComponent implements OnInit, OnDestroy {
   checklists: Checklist[] = [];
   isLoading = false;
   totalChecklists = 0;
-  checklistsPerPage = 2;
+  checklistsPerPage = 10;
   currentPage = 1;
   pageSizeOptions = [1, 2, 5, 10];
   private checklistsSub: Subscription;

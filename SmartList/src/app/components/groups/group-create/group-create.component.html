@@ -1,4 +1,4 @@
-<mat-card>New Group
+<mat-card>Group info.
   <mat-spinner *ngIf="isLoading"></mat-spinner>
   <form [formGroup]="form" (submit)="onSaveGroup()" *ngIf="!isLoading">
     <mat-form-field>
@@ -16,8 +16,12 @@
       <textarea matInput rows="4" formControlName="description" placeholder="Group Description"></textarea>
       <mat-error *ngIf="form.get('description').invalid">Please enter a group description.</mat-error>
     </mat-form-field>
-    <button mat-raised-button color="accent" type="submit">Save Group</button>
-    <a mat-button color="primary" [routerLink]="['/checklist-create', form.value.id]">Checklists</a>
+    <br>
+    <button mat-raised-button color="primary" type="submit">Save Group</button>
+    <a mat-button color="primary" [routerLink]="['/checklist-create', form.value.id]">Checklists</a> 
+    <br>
+    <app-checklist-list groupId={{groupId}} >
 
+    </app-checklist-list>
   </form>
 </mat-card>

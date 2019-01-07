@@ -15,7 +15,7 @@ export class GroupListComponent implements OnInit, OnDestroy {
   groups: Group[] = [];
   isLoading = false;
   totalGroups = 0;
-  groupsPerPage = 2;
+  groupsPerPage = 10;
   currentPage = 1;
   pageSizeOptions = [1, 2, 5, 10];
   private groupsSub: Subscription;

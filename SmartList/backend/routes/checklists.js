@@ -1,5 +1,6 @@
 const express = require("express");
 const multer = require("multer");
+const ObjectId = require('mongodb').ObjectId; 
 
 const Checklist = require("../models/checklist");
 
@@ -85,10 +86,21 @@ router.put(
 //Get all
 router.get("", (req, res, next) => {
   console.log("get method");
-
+  
   const pageSize = +req.query.pagesize;
   const currentPage = +req.query.page;
-  const checklistQuery = Checklist.find();
+  const group = req.query.group;
+
+  console.log("group:" + group);
+  console.log("group:" + req.query.group);
+
+
+  //  const checklistQuery = Checklist.find();
+//  const checklistQuery = Checklist.find({"_id": ObjectId("5c331a3c0f7e35027a92d48d")});
+//const checklistQuery = Checklist.find({"group.$oid": ObjectId("5c2f13011c600e038f77a8b2")});
+const checklistQuery = Checklist.find().where('group').equals(ObjectId(group)) ;
+
+  
   let fetchedChecklists;
   if (pageSize && currentPage) {
     checklistQuery.skip(pageSize * (currentPage - 1)).limit(pageSize);
