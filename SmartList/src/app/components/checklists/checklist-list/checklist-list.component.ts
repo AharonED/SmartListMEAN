@@ -20,7 +20,6 @@ export class ChecklistListComponent implements OnInit, OnDestroy {
   @Input() groupId: string ='-1';
 
   checklists: Checklist[] = [];
-  checklistsAll: Checklist[] = [];
   
   isLoading = false;
   totalChecklists = 0;
@@ -28,6 +27,11 @@ export class ChecklistListComponent implements OnInit, OnDestroy {
   currentPage = 1;
   pageSizeOptions = [1, 2, 5, 10];
   private checklistsSub: Subscription;
+
+ filterByTitle : boolean=true;
+ filterByDesc : boolean=true;
+ filterValue: string;
+ checklistsAll: Checklist[] = [];
 
   constructor(public checklistsService: ChecklistsService,
     public route: ActivatedRoute,) {}
@@ -72,16 +76,42 @@ export class ChecklistListComponent implements OnInit, OnDestroy {
   }
 
   applyFilter(filterValue: string) {
+    //console.log("filter: " + filterValue);    
+    //console.log(this.filterByTitle);
+    //console.log(this.filterByDesc);
+    
     if(filterValue=="")
       this.checklists = this.checklistsAll;
     else
-      this.checklists = this.checklistsAll.filter( (checklist: Checklist) => checklist.title.trim().toLowerCase() == filterValue.trim().toLowerCase());
+      this.checklists = this.checklistsAll.filter(
+        //this.filter
+          (checklist: Checklist) => 
+          (
+            ((this.filterByTitle==true) && checklist.title.trim().toLowerCase() == filterValue.trim().toLowerCase())
+          ||
+          ((this.filterByDesc==true) && checklist.description.trim().toLowerCase() == filterValue.trim().toLowerCase())
+          ) 
+          
+        );
 
-    console.log("filter: " + filterValue);    
 
     //if (this.dataSource.paginator) {
     //  this.dataSource.paginator.firstPage();
     //}
+  }
+
+  applyFilterType(checked:boolean, filterValue:string, type:string){
+
+    //console.log("checked=" + checked);
+    //console.log("filterValue=" + filterValue);
+    //console.log("type=" + type);
+
+    if(type=="filterByTitle")
+      this.filterByTitle=checked;
+      if(type=="filterByDesc")
+      this.filterByDesc=checked;
+      
+    this.applyFilter(filterValue);
   }
 
   ngOnDestroy() {
