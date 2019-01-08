@@ -6,10 +6,12 @@
     <mat-expansion-panel-header>
       {{ checklist.title }}
     </mat-expansion-panel-header>
+    <!--
     <div class="checklist-image">
       <img [src]="checklist.imagePath" [alt]="checklist.title">
     </div>
-    <p>{{ checklist.content }}</p>
+    -->
+    <p>{{ checklist.description }}</p>
     <mat-action-row>
       <a mat-button color="primary" [routerLink]="['/checklist-edit', checklist.id]">EDIT</a>
       <button mat-button color="warn" (click)="onDelete(checklist.id)">DELETE</button>

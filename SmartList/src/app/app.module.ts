@@ -11,7 +11,8 @@ import {
   MatToolbarModule,
   MatExpansionModule,
   MatProgressSpinnerModule,
-  MatPaginatorModule 
+  MatPaginatorModule ,
+  MatTableModule
 } from "@angular/material";
 
 import { AppComponent } from "./app.component";
@@ -63,6 +64,7 @@ import { ChecklistItemsListComponent } from './components/checklistItems/checkli
     MatExpansionModule,
     MatProgressSpinnerModule,
     MatPaginatorModule,
+    MatTableModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase, 'angular-auth-firebase'),
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features    

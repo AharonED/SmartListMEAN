@@ -1,4 +1,7 @@
-import { Component, OnInit, OnDestroy, Input, Output } from "@angular/core";
+import { Component, OnInit, OnDestroy, Input, Output ,ViewChild} from "@angular/core";
+import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import {SelectionModel} from '@angular/cdk/collections';
+
 import { PageEvent } from "@angular/material";
 import { Subscription } from "rxjs";
 
@@ -14,6 +17,10 @@ import { ActivatedRoute, ParamMap } from "@angular/router";
 })
 export class ChecklistItemsListComponent implements OnInit, OnDestroy {
 
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+  displayedColumns: string[] = ['select', 'title', 'description', 'isDone', 'EDIT', 'DELETE'];
+
   //@Input() ChecklistItemsID:number=-1;
   //@Output() ChecklistItemsId: string;
 
@@ -26,6 +33,8 @@ export class ChecklistItemsListComponent implements OnInit, OnDestroy {
   currentPage = 1;
   pageSizeOptions = [1, 2, 5, 10];
   private checklistItemsSub: Subscription;
+  dataSource: MatTableDataSource<ChecklistItem>;
+  selection = new SelectionModel<ChecklistItem>(true, []);
 
   constructor(public checklistItemsService: ChecklistItemsService,
     public route: ActivatedRoute,) {}
@@ -50,10 +59,81 @@ export class ChecklistItemsListComponent implements OnInit, OnDestroy {
               this.isLoading = false;
               this.totalChecklistItems = checklistItemsData.checklistItemsCount;
               this.checklistItems = checklistItemsData.checklistItems;
+              this.dataSource = new MatTableDataSource(this.checklistItems);
             });
-      
         });      
+           // this.dataSource.paginator = this.paginator;
+           // this.dataSource.sort = this.sort;            
   }
+
+  
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
+/** Whether the number of selected elements matches the total number of rows. */
+isAllSelected() {
+  const numSelected = this.selection.selected.length;
+  const numRows = this.dataSource.data.length;
+  return numSelected === numRows;
+}
+
+/** Selects all rows if they are not all selected; otherwise clear selection. */
+masterToggle() {
+  if(this.isAllSelected() )
+      {
+        this.selection.clear();
+        this.dataSource.data.forEach(row => 
+          {
+            this.selection.select(row);
+            row.isDone=false;
+            this.checklistItemsService.updateChecklistItems(
+              row.id,
+              row.title,
+              row.description,
+              row.imagePath,
+              row.checklistId ,
+              row.isDone       
+              );
+            }
+          );
+        }
+      else
+      {
+        this.dataSource.data.forEach(row => 
+        {
+          this.selection.select(row);
+          row.isDone=true;
+          this.checklistItemsService.updateChecklistItems(
+            row.id,
+            row.title,
+            row.description,
+            row.imagePath,
+            row.checklistId ,
+            row.isDone       
+            );
+          }
+        );
+      }
+}
+
+toggle(row: ChecklistItem) {
+        this.selection.toggle(row);
+        row.isDone= !row.isDone;
+        this.checklistItemsService.updateChecklistItems(
+          row.id,
+          row.title,
+          row.description,
+          row.imagePath,
+          row.checklistId ,
+          row.isDone       
+          );
+          console.log("togle " + row.isDone);
+}
 
   onChangedPage(pageData: PageEvent) {
     this.isLoading = true;
