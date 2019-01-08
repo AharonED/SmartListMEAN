@@ -2,9 +2,6 @@
 <a mat-button color="primary"  [routerLink]="['/checklistItem-create', checklistId]"routerLinkActive="mat-accent">New Checklist Item</a>
 <mat-spinner *ngIf="isLoading"></mat-spinner>
 
-<mat-form-field>
-  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-</mat-form-field>
 
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource"  *ngIf="checklistItems.length > 0 && !isLoading" matSort>

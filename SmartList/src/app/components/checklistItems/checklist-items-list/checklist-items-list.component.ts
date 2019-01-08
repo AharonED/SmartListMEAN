@@ -67,13 +67,6 @@ export class ChecklistItemsListComponent implements OnInit, OnDestroy {
   }
 
   
-  applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
-  }
 
 /** Whether the number of selected elements matches the total number of rows. */
 isAllSelected() {

@@ -20,6 +20,8 @@ export class ChecklistListComponent implements OnInit, OnDestroy {
   @Input() groupId: string ='-1';
 
   checklists: Checklist[] = [];
+  checklistsAll: Checklist[] = [];
+  
   isLoading = false;
   totalChecklists = 0;
   checklistsPerPage = 10;
@@ -49,6 +51,7 @@ export class ChecklistListComponent implements OnInit, OnDestroy {
               this.isLoading = false;
               this.totalChecklists = checklistData.checklistCount;
               this.checklists = checklistData.checklists;
+              this.checklistsAll  = checklistData.checklists;
             });
       
         });      
@@ -66,6 +69,19 @@ export class ChecklistListComponent implements OnInit, OnDestroy {
     this.checklistsService.deleteChecklist(checklistId).subscribe(() => {
       this.checklistsService.getChecklists(this.checklistsPerPage, this.currentPage, this.groupId);
     });
+  }
+
+  applyFilter(filterValue: string) {
+    if(filterValue=="")
+      this.checklists = this.checklistsAll;
+    else
+      this.checklists = this.checklistsAll.filter( (checklist: Checklist) => checklist.title.trim().toLowerCase() == filterValue.trim().toLowerCase());
+
+    console.log("filter: " + filterValue);    
+
+    //if (this.dataSource.paginator) {
+    //  this.dataSource.paginator.firstPage();
+    //}
   }
 
   ngOnDestroy() {
