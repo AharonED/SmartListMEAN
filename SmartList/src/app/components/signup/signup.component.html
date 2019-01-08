@@ -1,15 +1,28 @@
+<mat-card>
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+
 <div class="form-container">
-  <a routerLink="/login" id="goback">Go back</a>
+<!--  <a routerLink="/login" id="goback">Go back</a> -->
 
-  <h2>Join now</h2>
-
-  <span class="error" *ngIf="error" [@fallIn]='state'>{{ error }}</span>
-    
-  <form #formData='ngForm' (ngSubmit)="onSubmit(formData)">
-
-    <input type="text" placeholder="Email address.." (ngModel)="email" name="email" class="txt" required>
-    <input type="password" placeholder="Password" (ngModel)="password" name="password" class="txt" required>
-
-    <button type="submit" [disabled]="!formData.valid" class="basic-btn">Create my account</button>
+<h2>Join now</h2>
+<span class="error" *ngIf="error" >{{ error }}</span>
+<form   [formGroup]="form" (submit)="onSubmit()" *ngIf="!isLoading">
+    <mat-form-field>
+        <input matInput type="text" formControlName="email" placeholder="Email address..">
+        <mat-error *ngIf="form.get('email').invalid">Please enter an Email address.</mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+          <input matInput type="text" formControlName="password" placeholder="Password">
+          <mat-error *ngIf="form.get('password').invalid">Please enter a valid password.</mat-error>
+      </mat-form-field>
+  
+      <div class="row">
+          <button mat-raised-button color="primary" type="submit" [disabled]="form.get('password').invalid" >Create my account</button> 
+      </div>
+      <div class="row">
+          &nbsp;
+      </div>
   </form>
 </div>
+</mat-card>

@@ -10,7 +10,7 @@ import { LoginComponent } from './components/login/login.component';
 import { AuthGuard } from './services/auth-guard.service';
 import { AuthService } from './auth.service';
 
-//import { SignupComponent } from './components/signup/signup.component';
+import { SignupComponent } from './components/signup/signup.component';
 import { EmailComponent } from './components/email/email.component';
 
 import { GroupCreateComponent } from './components/groups/group-create/group-create.component';
@@ -31,7 +31,7 @@ const routes: Routes = [
   { path: 'create', component: NoteCreateComponent,canActivate: [AuthGuard] },
   { path: 'edit/:noteId', component: NoteCreateComponent },
   { path: 'login', component: LoginComponent },
-  //{ path: 'signup', component: SignupComponent },
+  { path: 'signup', component: SignupComponent },
   { path: 'login-email', component: EmailComponent },
 //  { path: 'tasks', component: TasksComponent}
 //Groups

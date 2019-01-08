@@ -5,7 +5,7 @@
 <!--  <a routerLink="/login" id="goback">Go back</a> -->
   <h2>Wellcom!</h2>
 
-  <span class="error" *ngIf="error" [@fallIn]='state'>{{ error }}</span>
+  <span class="error" *ngIf="error" >{{ error }}</span>
 
   <form   [formGroup]="form" (submit)="onSubmit()" *ngIf="!isLoading">
 

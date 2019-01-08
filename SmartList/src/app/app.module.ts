@@ -23,7 +23,7 @@ import { AppRoutingModule } from "./app-routing.module";
 //import {TasksComponent} from './components/tasks/tasks.component';
 import { LoginComponent } from './components/login/login.component';
 import { EmailComponent } from './components/email/email.component';
-//import { SignupComponent } from './components/signup/signup.component';
+import { SignupComponent } from './components/signup/signup.component';
 //import { AuthGuard } from './auth.service';
 import { AuthGuard } from './services/auth-guard.service';
 import { AuthService } from './auth.service';
@@ -49,7 +49,7 @@ import { ChecklistItemsListComponent } from './components/checklistItems/checkli
     //TasksComponent, 
     LoginComponent, 
     EmailComponent, GroupCreateComponent, GroupListComponent, ChecklistListComponent, ChecklistCreateComponent,  ChecklistItemsCreateComponent, ChecklistItemsListComponent, 
-    //SignupComponent
+    SignupComponent
   ],
   imports: [
     BrowserModule,
