@@ -1,4 +1,4 @@
-<span class="header">Checklist</span>
+<span class="header">Group Checklists</span>
 <a mat-button color="primary"  [routerLink]="['/checklist-create', checklistId]"routerLinkActive="mat-accent">New Checklist</a>
 <mat-spinner *ngIf="isLoading"></mat-spinner>
 <mat-accordion multi="true" *ngIf="checklists.length > 0 && !isLoading">

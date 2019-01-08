@@ -1,5 +1,5 @@
-<span class="header">ChecklistItems</span>
-<a mat-button color="primary"  [routerLink]="['/checklistItem-create', checklistId]"routerLinkActive="mat-accent">New ChecklistItems</a>
+<span class="header">Checklist Items</span>
+<a mat-button color="primary"  [routerLink]="['/checklistItem-create', checklistId]"routerLinkActive="mat-accent">New Checklist Item</a>
 <mat-spinner *ngIf="isLoading"></mat-spinner>
 
 <mat-form-field>
@@ -19,7 +19,8 @@
     <!-- Checkbox Column -->
   <ng-container matColumnDef="select">
     <th mat-header-cell *matHeaderCellDef>
-      <mat-checkbox (change)="$event ? masterToggle() : null"
+      <mat-checkbox (click)="$event.stopPropagation()"
+                    (change)="$event ? masterToggle() : null"
                     [checked]="selection.hasValue() && isAllSelected()"
                     [indeterminate]="selection.hasValue() && !isAllSelected()">
       </mat-checkbox>

@@ -97,7 +97,7 @@ masterToggle() {
               row.description,
               row.imagePath,
               row.checklistId ,
-              row.isDone       
+              row.isDone, false       
               );
             }
           );
@@ -114,7 +114,7 @@ masterToggle() {
             row.description,
             row.imagePath,
             row.checklistId ,
-            row.isDone       
+            row.isDone, false       
             );
           }
         );
@@ -130,7 +130,7 @@ toggle(row: ChecklistItem) {
           row.description,
           row.imagePath,
           row.checklistId ,
-          row.isDone       
+          row.isDone, false       
           );
           console.log("togle " + row.isDone);
 }

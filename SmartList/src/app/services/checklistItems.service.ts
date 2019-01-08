@@ -83,7 +83,7 @@ export class ChecklistItemsService {
       });
   }
 
-  updateChecklistItems(id: string, title: string, description: string, image: File | string, checklistId: string, isDone: boolean) {
+  updateChecklistItems(id: string, title: string, description: string, image: File | string, checklistId: string, isDone: boolean, redirectToList: boolean = true) {
     let checklistItemsData: ChecklistItem | FormData;
     if (typeof image === "object") {
       checklistItemsData = new FormData();
@@ -108,7 +108,8 @@ export class ChecklistItemsService {
     this.http
       .put("http://localhost:3000/api/checklistItems/" + id, checklistItemsData)
       .subscribe(response => {
-        this.router.navigate(["/checklistItem-list/" + checklistId]);
+        if(redirectToList)
+          this.router.navigate(["/checklistItem-list/" + checklistId]);
       });
   }
 

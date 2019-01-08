@@ -11,3 +11,7 @@ table {
     width: 25%;
   }
   
+  span.header {
+    font-style: italic;
+    font-weight: bold
+}
