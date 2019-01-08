@@ -8,6 +8,8 @@
   <label for="filterByTitle">By Title</label>
   <input id="filterByDesc" type="checkbox" (change)="applyFilterType($event.target.checked, filterValue.value, 'filterByDesc')" [checked]='filterByDesc' placeholder="By Description" title="By Description" value="By Description"> 
   <label for="filterByDesc">By Description</label>
+  <input id="filterByImage" type="checkbox" (change)="applyFilterType($event.target.checked, filterValue.value, 'filterByImage')" [checked]='filterByImage' placeholder="By Image" title="By Image" value="By Image"> 
+  <label for="filterByImage">By Image</label>
   <br>
   <br>
 <mat-spinner *ngIf="isLoading"></mat-spinner>

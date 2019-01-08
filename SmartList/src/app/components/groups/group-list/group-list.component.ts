@@ -22,6 +22,7 @@ export class GroupListComponent implements OnInit, OnDestroy {
 
   filterByTitle : boolean=true;
   filterByDesc : boolean=true;
+  filterByImage : boolean=true;
   filterValue: string;
   groupsAll: Group[] = [];
  
@@ -68,10 +69,11 @@ export class GroupListComponent implements OnInit, OnDestroy {
           (group: Group) => 
           (
             ((this.filterByTitle==true) && group.title.trim().toLowerCase() == filterValue.trim().toLowerCase())
-          ||
-          ((this.filterByDesc==true) && group.description.trim().toLowerCase() == filterValue.trim().toLowerCase())
+            ||
+            ((this.filterByDesc==true) && group.description.trim().toLowerCase() == filterValue.trim().toLowerCase())
+            ||
+            ((this.filterByImage==true) && group.imagePath.trim().toLowerCase().indexOf(filterValue.trim().toLowerCase())>0)
           ) 
-          
         );
 
 
@@ -90,7 +92,9 @@ export class GroupListComponent implements OnInit, OnDestroy {
       this.filterByTitle=checked;
       if(type=="filterByDesc")
       this.filterByDesc=checked;
-      
+      if(type=="filterByImage")
+      this.filterByImage=checked;
+
     this.applyFilter(filterValue);
   }
 
