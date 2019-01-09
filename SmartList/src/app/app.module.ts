@@ -41,6 +41,7 @@ import { ChecklistItemsListComponent } from './components/checklistItems/checkli
 import { GroupsHLLComponent } from './components/groups/groups-hll/groups-hll.component';
 import { HLLPipe } from './Pipes/HLLPipe';
 import { AreaChartComponent } from './components/area-chart/area-chart.component';
+import { GroupsChecklistsComponent } from './components/groups-checklists/groups-checklists.component';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { AreaChartComponent } from './components/area-chart/area-chart.component
     EmailComponent, GroupCreateComponent, GroupListComponent, ChecklistListComponent, ChecklistCreateComponent,  ChecklistItemsCreateComponent, ChecklistItemsListComponent, 
     SignupComponent, GroupsHLLComponent,
     HLLPipe,
-    AreaChartComponent
+    AreaChartComponent,
+    GroupsChecklistsComponent
   ],
   imports: [
     BrowserModule,
