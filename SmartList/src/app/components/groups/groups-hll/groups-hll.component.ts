@@ -20,8 +20,14 @@ export class GroupsHLLComponent implements OnInit {
     this.groupsService.getGroupHLL().subscribe(groupData => {
      console.log(JSON.stringify(groupData) );
      this.GroupsCount =parseInt(JSON.stringify(groupData) );
-     
     });
+    
+    
+     this.groupsService.getGroupChecklistsCount().subscribe(groupData => {
+      console.log(groupData);
+      //this.GroupsCount =parseInt(JSON.stringify(groupData) );
+     });
+ 
   }
 
 }

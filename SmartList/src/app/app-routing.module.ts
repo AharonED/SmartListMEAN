@@ -41,6 +41,8 @@ const routes: Routes = [
   { path: 'group-edit/:groupId', component: GroupCreateComponent ,canActivate: [AuthGuard]},
   { path: 'group-list', component: GroupListComponent ,canActivate: [AuthGuard]},
   { path: 'group-hll', component: GroupsHLLComponent ,canActivate: [AuthGuard]},
+  { path: 'group-Checklists', component: GroupsHLLComponent ,canActivate: [AuthGuard]},
+  
 //Checklist
   { path: 'checklist-create/:groupId', component: ChecklistCreateComponent ,canActivate: [AuthGuard]},
   { path: 'checklist-edit/:checklistId', component: ChecklistCreateComponent ,canActivate: [AuthGuard]},

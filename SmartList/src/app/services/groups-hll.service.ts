@@ -22,4 +22,12 @@ export class GroupsHLLService {
     }>("http://localhost:3000/api/groupsHLL/" );
   }
 
+  getGroupChecklistsCount() {
+    return this.http.get<{
+      _id: string;
+      count: number;
+    }>("http://localhost:3000/api/groupsChecklists/" );
+  }
+
+  
 }
