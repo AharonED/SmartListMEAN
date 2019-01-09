@@ -22,12 +22,12 @@ export class GroupsHLLComponent implements OnInit {
      this.GroupsCount =parseInt(JSON.stringify(groupData) );
     });
     
-    /*
+    //validate hll algorithm by getting all groups broup-by title...
      this.groupsService.getGroupChecklistsCount().subscribe(groupData => {
       console.log(groupData);
       //this.GroupsCount =parseInt(JSON.stringify(groupData) );
      });
-*/
+
 
   }
 
