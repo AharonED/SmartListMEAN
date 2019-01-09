@@ -9,8 +9,47 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <!--
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script src="https://cdn.socket.io/socket.io-1.0.0.js"></script>
+  
+  <script src="/node_modules/socket.io-client/dist/socket.io.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/SmartList/node_modules/socket.io-client/dist/socket.io.js"></script>
+  <script src="/jquery/dist/jquery.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+
+  <script>
+      var socket = io.connect();
+      jQuery(function ($) {
+          var gCount = $('#gCount');
+          socket.on('tweet', function (data) {
+            gCount.value = data; 
+          }); 
+      });
+  </script>
+
+
+<script>
+    console.log("index");
+    
+    var socket = new io.Socket('localhost',{      port: 3000    });   
+    socket.connect();
+    console.log('connecting...'); 
+    socket.on('GroupAdded', function(data) { 
+    console.log('script:' + data); 
+    document.getElementById('gCount').value =data; 
+     }); 
+     
+
+  </script>
+  -->
+  
 </head>
 <body>
+  <input type='text'  id="gCount" [value]="GroupsCount" #gCount/>
+
   <app-root></app-root>
 </body>
 </html>

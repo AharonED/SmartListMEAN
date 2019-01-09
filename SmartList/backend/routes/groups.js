@@ -1,3 +1,4 @@
+const server = require("../../server");
 const express = require("express");
 const multer = require("multer");
 
@@ -53,6 +54,35 @@ router.post(
         }
       });
     });
+
+
+    /////////////////
+    //Socket smits all client with current count of groups
+    ///////////////
+
+    const server = require("../../server");
+    //console.log( server);
+
+    const io = require('socket.io').listen(server);
+    //console.log( io);
+    server.getConnections((err,count)=>{
+      console.log(count);
+    });
+
+    //console.log("io=" + io);
+    //console.log("io.sockets=" + io.sockets);
+    //console.log("global.getIO" +global.getIO);
+    Group.count((err,count)=>{
+      console.log("Group.count" + count);
+      global.getIO.sockets.emit('GroupAdded', count);
+    });
+    //global.getIO.sockets.emit('GroupAdded',  '--- : ' + groupCount);
+
+/////////////////
+//Use HyperLogLog HLL for couning distindt all the
+////////////////
+
+    
   }
 );
 

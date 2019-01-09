@@ -22,6 +22,8 @@ import { ChecklistListComponent } from './components/checklists/checklist-list/c
 import { ChecklistItemsCreateComponent } from './components/checklistItems/checklist-items-create/checklist-items-create.component';
 import { ChecklistItemsListComponent } from './components/checklistItems/checklist-items-list/checklist-items-list.component';
 
+import { GroupsHLLComponent } from './components/groups/groups-hll/groups-hll.component';
+
 const routes: Routes = [
   //{ path: '', redirectTo: 'login-email', pathMatch: 'full' },
   { path: '', component: EmailComponent },
@@ -38,6 +40,7 @@ const routes: Routes = [
 { path: 'group-create', component: GroupCreateComponent ,canActivate: [AuthGuard]},
   { path: 'group-edit/:groupId', component: GroupCreateComponent ,canActivate: [AuthGuard]},
   { path: 'group-list', component: GroupListComponent ,canActivate: [AuthGuard]},
+  { path: 'group-hll', component: GroupsHLLComponent ,canActivate: [AuthGuard]},
 //Checklist
   { path: 'checklist-create/:groupId', component: ChecklistCreateComponent ,canActivate: [AuthGuard]},
   { path: 'checklist-edit/:checklistId', component: ChecklistCreateComponent ,canActivate: [AuthGuard]},

@@ -7,6 +7,7 @@ const notesRoutes = require("./routes/notes");
 const groupsRoutes = require("./routes/groups");
 const checklistsRoutes = require("./routes/checklists");
 const checklistItemsRoutes = require("./routes/checklistItems");
+const groupsHLLRoutes = require("./routes/groups.HLL");
 
 const app = express();
 
@@ -43,9 +44,12 @@ app.use((req, res, next) => {
 });
 
 app.use("/api/notes", notesRoutes);
+//app.use("/api/users", usersRoutes);
 app.use("/api/groups", groupsRoutes);
 app.use("/api/checklists", checklistsRoutes);
 app.use("/api/checklistItems", checklistItemsRoutes);
+app.use("/api/groupsHLL", groupsHLLRoutes);
+
 app.use((req,res,next) => {
 	res.sendFile(path.join(__dirname,"angular",index.html));
 });
