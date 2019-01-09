@@ -1,4 +1,3 @@
-<p>
-    <span>Count Distinct of groups words:</span>  
-    <input type='text'  value="{{GroupsCount}}" #gCount  style="border-style: none" />
+<p style="border-style: none; widows:100%" >
+    <input type='text'  value="{{GroupsCount | HLLPipe }}" />
 </p>

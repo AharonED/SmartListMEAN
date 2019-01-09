@@ -84,7 +84,7 @@ router.get("", (req, res, next) => {
       //console.log(groups.title);
       }
     }).then(()=>{
-      console.log(h.estimate());
+      //console.log(h.estimate());
       res.status(200).json(h.estimate() );
   }) ;
 });

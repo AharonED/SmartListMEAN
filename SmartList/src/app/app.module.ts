@@ -39,6 +39,7 @@ import { ChecklistListComponent } from './components/checklists/checklist-list/c
 import { ChecklistItemsCreateComponent } from './components/checklistItems/checklist-items-create/checklist-items-create.component';
 import { ChecklistItemsListComponent } from './components/checklistItems/checklist-items-list/checklist-items-list.component';
 import { GroupsHLLComponent } from './components/groups/groups-hll/groups-hll.component';
+import { HLLPipe } from './Pipes/HLLPipe';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { GroupsHLLComponent } from './components/groups/groups-hll/groups-hll.co
     //TasksComponent, 
     LoginComponent, 
     EmailComponent, GroupCreateComponent, GroupListComponent, ChecklistListComponent, ChecklistCreateComponent,  ChecklistItemsCreateComponent, ChecklistItemsListComponent, 
-    SignupComponent, GroupsHLLComponent
+    SignupComponent, GroupsHLLComponent,
+    HLLPipe
   ],
   imports: [
     BrowserModule,
