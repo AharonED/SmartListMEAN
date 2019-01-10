@@ -28,6 +28,9 @@ export class GroupsHLLService {
       count: number;
     }>("http://localhost:3000/api/groupsChecklists/" );
   }
+  getGroupChecklistsCountJSON() {
+    return this.http.get("http://localhost:3000/api/groupsChecklists/" );
+  }
 
   
 }

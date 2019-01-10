@@ -3,6 +3,7 @@ import * as express from "express";
 import * as socketIo from 'socket.io-client';
 //import * as path from "path"
 import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { group } from '@angular/animations';
 
 const SERVER_URL = 'http://localhost:3000';
 
@@ -15,7 +16,7 @@ export class AppComponent implements OnInit {
 
   @Output() socket;
   GroupsCount : number=0;
-  //form: FormGroup;
+  form: FormGroup;
 
   constructor(
 //    private elementRef:ElementRef
@@ -51,6 +52,9 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
 
+    this.form = new FormGroup({
+      gCount: new FormControl()
+   });
     //this.form = new FormGroup({
      // gCount: new FormControl(null, null)
      // });
@@ -64,7 +68,8 @@ export class AppComponent implements OnInit {
       this.socket.on('GroupAdded', function(groupsCount: any){
         console.log("Group count: " + groupsCount);
         this.GroupsCount = groupsCount;
-
+        //this.from.("gCount").setValue(groupsCount);
+        this.form.value.gCount=groupsCount;
         //this.form = new FormGroup({
          // gCount: new FormControl(null, null)
          // });

@@ -1,5 +1,8 @@
 <app-header></app-header>
-<span>Count of Groups:</span>  <input type='text'  id="gCount" [value]="GroupsCount" #gCount style="border-style: none" />
+<form [formGroup]="form">
+<span>Count of Groups:</span>  <input  formControlName="gCount" type='text'  id="gCount" [value]="GroupsCount" #gCount style="border-style: none" />
+<!-- <input [(ngModel)]="GroupsCount"  /> -->
+</form>
 <main>
   <router-outlet></router-outlet>
 </main>
