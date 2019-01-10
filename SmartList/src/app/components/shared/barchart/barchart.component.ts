@@ -14,8 +14,8 @@ import * as d3 from 'd3v4';
     @Input() private data: Array<any>;
     private margin: any = { top: 20, bottom: 20, left: 20, right: 20};
     private chart: any;
-    private width: number;
-    private height: number;
+    private width: number=700;
+    private height: number=400;
     private xScale: any;
     private yScale: any;
     private colors: any;
@@ -39,11 +39,11 @@ import * as d3 from 'd3v4';
   
     createChart() {
       let element = this.chartContainer.nativeElement;
-      this.width = 700;//element.offsetWidth - this.margin.left - this.margin.right;
-      this.height = 700;// element.offsetHeight - this.margin.top - this.margin.bottom;
+      //this.width = 700;//element.offsetWidth - this.margin.left - this.margin.right;
+      //this.height = 400;// element.offsetHeight - this.margin.top - this.margin.bottom;
       let svg = d3.select(element).append('svg')
         .attr('width', element.offsetWidth)
-        .attr('height', 750);
+        .attr('height', this.height+50);
   
       // chart plot area
       this.chart = svg.append('g')
