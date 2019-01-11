@@ -48,7 +48,7 @@ router.get("", (req, res, next) => {
               //'title' : {"$max" :"$title"},
               'count' : { "$sum": 1 }
           }
-        }
+        },{ $sort: { count: 1 } }
       ]
   ).then(groups => {
     if (groups) {

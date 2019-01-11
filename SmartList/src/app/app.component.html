@@ -1,8 +1,4 @@
 <app-header></app-header>
-<form [formGroup]="form">
-<span>Currently count of Groups:</span>  <input  formControlName="gCount" type='text'  id="gCount" [value]="GroupsCount" (input)="GroupsCount=$event.target.value" #gCount style="border-style: none" />
-<!-- <input [(ngModel)]="GroupsCount"  /> -->
-</form>
 <main>
   <router-outlet></router-outlet>
 </main>

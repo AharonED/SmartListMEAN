@@ -23,7 +23,7 @@ export class GroupsHLLComponent implements OnInit {
     });
     
     //validate hll algorithm by getting all groups broup-by title...
-     this.groupsService.getGroupChecklistsCount().subscribe(groupData => {
+     this.groupsService.getGroupChecklistsCountTop10().subscribe(groupData => {
       console.log(groupData);
       //this.GroupsCount =parseInt(JSON.stringify(groupData) );
      });

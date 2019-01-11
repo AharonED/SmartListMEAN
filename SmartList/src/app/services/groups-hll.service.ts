@@ -28,6 +28,14 @@ export class GroupsHLLService {
       count: number;
     }>("http://localhost:3000/api/groupsChecklists/" );
   }
+
+  getGroupChecklistsCountTop10() {
+    return this.http.get<{
+      _id: string;
+      count: number;
+    }>("http://localhost:3000/api/groupsChecklists" );
+  }
+  
   getGroupChecklistsCountJSON() {
     return this.http.get("http://localhost:3000/api/groupsChecklists/" );
   }

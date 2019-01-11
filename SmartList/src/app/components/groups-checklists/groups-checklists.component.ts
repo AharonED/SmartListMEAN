@@ -30,7 +30,7 @@ export class GroupsChecklistsComponent implements OnInit {
 
   generateData() {
     this.chartData = [];
-    this.groupsService.getGroupChecklistsCount().subscribe(groupData => {
+    this.groupsService.getGroupChecklistsCountTop10().subscribe(groupData => {
       const groups = JSON.stringify(groupData);
       var arr:Array<any>;
       arr = JSON.parse(groups, (key, value) => {

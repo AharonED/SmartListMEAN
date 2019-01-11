@@ -43,6 +43,7 @@ import { HLLPipe } from './Pipes/HLLPipe';
 import { AreaChartComponent } from './components/area-chart/area-chart.component';
 import { GroupsChecklistsComponent } from './components/groups-checklists/groups-checklists.component';
 import { BarchartComponent } from './components/shared/barchart/barchart.component';
+import { TwoWaysBindingsComponent } from './components/two-ways-bindings/two-ways-bindings.component';
 
 
 @NgModule({
@@ -58,7 +59,8 @@ import { BarchartComponent } from './components/shared/barchart/barchart.compone
     HLLPipe,
     AreaChartComponent,
     GroupsChecklistsComponent,
-    BarchartComponent
+    BarchartComponent,
+    TwoWaysBindingsComponent
   ],
   imports: [
     BrowserModule,
