@@ -11,6 +11,7 @@ import { GroupsService } from "../../../services/groups.service";
   styleUrls: ["./group-list.component.css"]
 })
 export class GroupListComponent implements OnInit, OnDestroy {
+  GroupsCount : number=1;
 
   groups: Group[] = [];
   isLoading = false;

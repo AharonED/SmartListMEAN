@@ -1,4 +1,6 @@
 <form [formGroup]="form">
-  <span>Currently count of Groups:</span>  <input  formControlName="gCount" type='text'  id="gCount" [value]="GroupsCount" #gCount style="border-style: none" />
-  <!-- <input [(ngModel)]="GroupsCount"  /> -->
+  <span>Currently count of Groups:</span>  <input (onchange)="changed()" formControlName="gCount" type='text'  id="gCount" [value]="GroupsCount" #gCount style="border-style: none" />
+  <!-- {{GroupsCount}} 
+  <input [(ngModel)]="GroupsCount" />
+  -->
   </form>

@@ -1,4 +1,4 @@
-import { Component,OnInit,Input,Output ,ElementRef} from '@angular/core';
+import { Component,OnInit,Input,Output ,ElementRef,EventEmitter} from '@angular/core';
 import * as express from "express";
 import * as socketIo from 'socket.io-client';
 //import * as path from "path"
@@ -7,6 +7,7 @@ import { group } from '@angular/animations';
 import { GroupsService } from "../../../app/services/groups.service";
 import { Group } from "../../../../src/app/Model/group.model";
 import { Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 
 const SERVER_URL = 'http://localhost:3000';
 
@@ -21,7 +22,27 @@ export class TwoWaysBindingsComponent implements OnInit {
   form: FormGroup;
   private groupsSub: Subscription;
 
-  constructor(public groupsService:GroupsService) { }
+  @Output() counterChange :  EventEmitter<number>;
+
+  constructor(public groupsService:GroupsService) { 
+    this.counterChange = new EventEmitter();
+  }
+
+  @Input() 
+  get counter(){
+      return this.GroupsCount; 
+  }
+  set counter(val:number){
+    this.GroupsCount=val;
+  }
+
+  public getMessages = () => {
+    return Observable.create((observer) => {
+        this.socket.on('GroupAdded', (message) => {
+            observer.next(message);
+        });
+    });
+}
 
   sendMsg() {
     console.log("sending message to server");
@@ -46,10 +67,14 @@ export class TwoWaysBindingsComponent implements OnInit {
       this.socket.on('message', function(message: any){
         console.log("getting message from server: " + message);
       });
-  
+
+      /*
       this.socket.on('GroupAdded', function(groupsCount: any){
         console.log("Group count: " + groupsCount);
         this.GroupsCount = groupsCount+1;
+
+        //this.counterChange.emit(this.GroupsCount);
+
         //this.from.("gCount").setValue(groupsCount);
         //this.form.value.gCount=groupsCount;
         //this.gCount.value=groupsCount;
@@ -61,7 +86,12 @@ export class TwoWaysBindingsComponent implements OnInit {
         //  gCount: groupsCount
         //});
       });   
-        
+    */
+
+   this.getMessages()
+   .subscribe((message: string) => {
+     this.GroupsCount = parseInt(message);
+   });    
   }
 
   ngOnDestroy() {
