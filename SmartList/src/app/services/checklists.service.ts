@@ -14,8 +14,9 @@ export class ChecklistsService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  getChecklists(checklistsPerPage: number, currentPage: number, group: string) {
-    const queryParams = `?pagesize=${checklistsPerPage}&page=${currentPage}&group=${group}`;
+  getChecklists(checklistsPerPage: number, currentPage: number, group: string, filter:string="") {
+    const queryParams = `?pagesize=${checklistsPerPage}&page=${currentPage}&group=${group}&filter=${filter}`;
+  console.log(filter);
     this.http
       .get<{ message: string; checklists: any; maxChecklists: number }>(
         "http://localhost:3000/api/checklists" + queryParams

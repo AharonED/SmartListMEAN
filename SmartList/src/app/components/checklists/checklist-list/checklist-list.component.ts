@@ -65,7 +65,8 @@ export class ChecklistListComponent implements OnInit, OnDestroy {
     this.isLoading = true;
     this.currentPage = pageData.pageIndex + 1;
     this.checklistsPerPage = pageData.pageSize;
-    this.checklistsService.getChecklists(this.checklistsPerPage, this.currentPage, this.groupId);
+    //this.checklistsService.getChecklists(this.checklistsPerPage, this.currentPage, this.groupId);
+    this.applyFilter(this.filterValue);
   }
 
   onDelete(checklistId: string) {
@@ -75,25 +76,56 @@ export class ChecklistListComponent implements OnInit, OnDestroy {
     });
   }
 
-  applyFilter(filterValue: string) {
+  applyFilter(filterValue) {
     //console.log("filter: " + filterValue);    
     //console.log(this.filterByTitle);
     //console.log(this.filterByDesc);
-    
+/*
+    if(filterValue=="")
+      this.groups = this.groupsAll;
+    else
+      this.groups = this.groupsAll.filter(
+        //this.filter
+          (group: Group) => 
+          (
+            ((this.filterByTitle==true) && group.title.trim().toLowerCase() == filterValue.trim().toLowerCase())
+            ||
+            ((this.filterByDesc==true) && group.description.trim().toLowerCase() == filterValue.trim().toLowerCase())
+            ||
+            ((this.filterByImage==true) && group.imagePath.trim().toLowerCase().indexOf(filterValue.trim().toLowerCase())>0)
+          ) 
+        );
+
+*/
+
+
+//12. To do an or check with multiple keys use $or
+//db.testdb.find({"$or" : [{"status" : "dropout"}, {"gpa" : {"$lt" : 3.0}}]}, {"name" : 1, "_id" : 0})
+ 
+  this.filterValue=filterValue;
+  var filterarr:string [] =[];
+  var filter : string;
     if(filterValue=="")
       this.checklists = this.checklistsAll;
     else
-      this.checklists = this.checklistsAll.filter(
-        //this.filter
-          (checklist: Checklist) => 
-          (
-            ((this.filterByTitle==true) && checklist.title.trim().toLowerCase() == filterValue.trim().toLowerCase())
-          ||
-          ((this.filterByDesc==true) && checklist.description.trim().toLowerCase() == filterValue.trim().toLowerCase())
-          ) 
-          
-        );
+    {
+      if ((this.filterByTitle==true) )
+      filterarr.push('{"title" : "' + filterValue + '"}');
+      if ((this.filterByDesc==true) )
+      filterarr.push('{"description" : "' + filterValue + '"}');
+      //if ((this.filterByImage==true) )
+      //filterarr.push('{"imagePath" : "' + filterValue + '"}');
+    } 
+    if(filterarr.length>0)
+    {
+      filter = filterarr.join(",");
+      filter = '{"$or" : [' + filter + ']}';
+      this.checklistsService.getChecklists(this.checklistsPerPage, this.currentPage, this.groupId,filter);
+    }
+    else
+      this.checklistsService.getChecklists(this.checklistsPerPage, this.currentPage, this.groupId);
 
+ 
 
     //if (this.dataSource.paginator) {
     //  this.dataSource.paginator.firstPage();
@@ -110,8 +142,12 @@ export class ChecklistListComponent implements OnInit, OnDestroy {
       this.filterByTitle=checked;
       if(type=="filterByDesc")
       this.filterByDesc=checked;
-      
-    this.applyFilter(filterValue);
+      //if(type=="filterByImage")
+      //this.filterByImage=checked;
+
+      this.filterValue=filterValue;
+
+      this.applyFilter(this.filterValue);
   }
 
   ngOnDestroy() {

@@ -10,19 +10,19 @@ const SERVER_URL = 'http://localhost:8080';
 export class SocketService {
   private socket;
   public initSocket(): void {
-    this.socket = socketIo(SERVER_URL);
+    SocketService.socket = socketIo(SERVER_URL);
   }
   public send(message: Message): void {
-    this.socket.emit('message', message);
+    SocketService.socket.emit('message', message);
   }
   public onMessage(): Observable<Message> {
     return new Observable<Message>(observer => {
-      this.socket.on('message', (data: Message) => observer.next(data));
+      SocketService.socket.on('message', (data: Message) => observer.next(data));
       });
   }
   public onEvent(event: Event): Observable<any> {
     return new Observable<Event>(observer => {
-      this.socket.on(event, () => observer.next());
+      SocketService.socket.on(event, () => observer.next());
     });
   }
 }*/
@@ -35,21 +35,21 @@ import { Injectable } from "@angular/core";
 @Injectable({ providedIn: "root" })
 export class SocketService {
     private url = 'http://localhost:3000';
-    private socket;
+    public static socket;
 
     constructor() {
-        if (!this.socket) 
-            this.socket = io(this.url), {transports: ['websocket']};
+        if (!SocketService.socket) 
+            SocketService.socket = io(this.url), {transports: ['websocket']};
     }
 
     public sendMessage(message) {
-        this.socket.emit('GroupAdded', message);
+        SocketService.socket.emit('GroupAdded', message);
     }
 
     public getMessages = () => {
         console.log("getMessages");
         return Observable.create((observer) => {
-            this.socket.on('GroupAdded', (message) => {
+            SocketService.socket.on('GroupAdded', (message) => {
                 observer.next(message);
             });
         });
@@ -57,9 +57,9 @@ export class SocketService {
 
     public closeUserSocket(){
         // Setup the socket namespace subscription
-if (!this.socket) {
+if (!SocketService.socket) {
     // Initialize user permissions socket
-    //this.socket = io(NTC_API_URL + `/user/${this.socket.userID}`, { secure: true });
+    //SocketService.socket = io(NTC_API_URL + `/user/${SocketService.socket.userID}`, { secure: true });
 }
 
     }

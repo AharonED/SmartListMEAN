@@ -28,11 +28,11 @@ export class TwoWaysBindingsComponent implements OnInit {
   constructor(public groupsService:GroupsService, public socketService:SocketService ) { 
     this.counterChange = new EventEmitter();
     
-    this.socketService.getMessages()
+    /* this.socketService.getMessages()
    .subscribe((message: string) => {
      console.log("subscribe");
      this.GroupsCount = parseInt(message);
-   });   
+   });    */
   }
 
   @Input() 
@@ -49,6 +49,7 @@ export class TwoWaysBindingsComponent implements OnInit {
       gCount: new FormControl()
    });
 
+   //Load default value - current actual count value
    this.groupsService.getGroups(1, 1);
    this.groupsSub = this.groupsService
      .getGroupUpdateListener()
@@ -56,6 +57,7 @@ export class TwoWaysBindingsComponent implements OnInit {
        this.GroupsCount = groupData.groupCount;
      });   
 
+    //register  getMessages events of socket
    this.socketService.getMessages()
    .subscribe((message: string) => {
      console.log("subscribe");
@@ -65,8 +67,8 @@ export class TwoWaysBindingsComponent implements OnInit {
 
   ngOnDestroy() {
     console.log("appComponent ngOnDestroy");
-    this.socketService.getMessages().unsubscribe();
-    this.socketService.closeUserSocket();
+    //this.socketService.getMessages().unsubscribe();
+    //this.socketService.closeUserSocket();
   }  
 }
 
