@@ -108,7 +108,7 @@ console.log("new connection");
 	client.on('message', function(message) {
       console.log('server event: get message ' + message);
 
-			client.broadcast.emit('message',  '--- : ' + message);
+			client.broadcast.emit('message',  message);
 	});
 
   
@@ -116,7 +116,7 @@ console.log("new connection");
 	client.on('AddGroup', function(GroupCount) {
     console.log('server event: get message AddGroup ' + GroupCount);
 
-    client.broadcast.emit('GroupAdded',  '--- : ' + GroupCount);
+    client.broadcast.emit('GroupAdded',  GroupCount);
 });
 
 	/**

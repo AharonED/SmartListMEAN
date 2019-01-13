@@ -113,12 +113,19 @@ router.put(
 router.get("", (req, res, next) => {
   const pageSize = +req.query.pagesize;
   const currentPage = +req.query.page;
-  const groupQuery = Group.find();
+  const filter = req.query.filter;
+console.log(filter);
+  
+let groupQuery;
+
+
+  groupQuery = Group.find((filter!=""?JSON.parse(filter):null));
+
   let fetchedGroups;
   if (pageSize && currentPage) {
     groupQuery.skip(pageSize * (currentPage - 1)).limit(pageSize);
   }
-  groupQuery
+  groupQuery.find()
     .then(documents => {
       fetchedGroups = documents;
       return Group.count();

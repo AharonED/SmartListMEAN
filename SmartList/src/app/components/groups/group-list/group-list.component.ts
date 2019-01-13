@@ -4,6 +4,8 @@ import { Subscription } from "rxjs";
 
 import { Group } from "../../../Model/group.model";
 import { GroupsService } from "../../../services/groups.service";
+import { stratify } from "d3";
+import { stringify } from "@angular/core/src/render3/util";
 
 @Component({
   selector: "app-group-list",
@@ -18,7 +20,7 @@ export class GroupListComponent implements OnInit, OnDestroy {
   totalGroups = 0;
   groupsPerPage = 10;
   currentPage = 1;
-  pageSizeOptions = [1, 2, 5, 10];
+  pageSizeOptions = [10, 20, 50, 100];
   private groupsSub: Subscription;
 
   filterByTitle : boolean=true;
@@ -46,7 +48,8 @@ export class GroupListComponent implements OnInit, OnDestroy {
     this.isLoading = true;
     this.currentPage = pageData.pageIndex + 1;
     this.groupsPerPage = pageData.pageSize;
-    this.groupsService.getGroups(this.groupsPerPage, this.currentPage);
+    //this.groupsService.getGroups(this.groupsPerPage, this.currentPage);
+    this.applyFilter(this.filterValue);
   }
 
   onDelete(groupId: string) {
@@ -57,11 +60,11 @@ export class GroupListComponent implements OnInit, OnDestroy {
   }
 
 
-  applyFilter(filterValue: string) {
+  applyFilter(filterValue) {
     //console.log("filter: " + filterValue);    
     //console.log(this.filterByTitle);
     //console.log(this.filterByDesc);
-    
+/*
     if(filterValue=="")
       this.groups = this.groupsAll;
     else
@@ -77,6 +80,36 @@ export class GroupListComponent implements OnInit, OnDestroy {
           ) 
         );
 
+*/
+
+
+//12. To do an or check with multiple keys use $or
+//db.testdb.find({"$or" : [{"status" : "dropout"}, {"gpa" : {"$lt" : 3.0}}]}, {"name" : 1, "_id" : 0})
+ 
+  this.filterValue=filterValue;
+  var filterarr:string [] =[];
+  var filter : string;
+    if(filterValue=="")
+      this.groups = this.groupsAll;
+    else
+    {
+      if ((this.filterByTitle==true) )
+      filterarr.push('{"title" : "' + filterValue + '"}');
+      if ((this.filterByDesc==true) )
+      filterarr.push('{"description" : "' + filterValue + '"}');
+      if ((this.filterByImage==true) )
+      filterarr.push('{"imagePath" : "' + filterValue + '"}');
+    } 
+    if(filterarr.length>0)
+    {
+      filter = filterarr.join(",");
+      filter = '{"$or" : [' + filter + ']}';
+      this.groupsService.getGroups(this.groupsPerPage, this.currentPage,filter);
+    }
+    else
+      this.groupsService.getGroups(this.groupsPerPage, this.currentPage);
+
+ 
 
     //if (this.dataSource.paginator) {
     //  this.dataSource.paginator.firstPage();
@@ -96,7 +129,9 @@ export class GroupListComponent implements OnInit, OnDestroy {
       if(type=="filterByImage")
       this.filterByImage=checked;
 
-    this.applyFilter(filterValue);
+      this.filterValue=filterValue;
+
+      this.applyFilter(this.filterValue);
   }
 
   ngOnDestroy() {

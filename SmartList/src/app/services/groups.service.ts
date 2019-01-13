@@ -13,8 +13,8 @@ export class GroupsService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  getGroups(groupsPerPage: number, currentPage: number) {
-    const queryParams = `?pagesize=${groupsPerPage}&page=${currentPage}`;
+  getGroups(groupsPerPage: number, currentPage: number, filter:string="") {
+    const queryParams = `?pagesize=${groupsPerPage}&page=${currentPage}&filter=${filter}`;
     this.http
       .get<{ message: string; groups: any; maxGroups: number }>(
         "http://localhost:3000/api/groups" + queryParams

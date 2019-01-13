@@ -26,3 +26,41 @@ export class SocketService {
     });
   }
 }*/
+
+
+import * as io from 'socket.io-client';
+import { Observable } from 'rxjs';
+import { Injectable } from "@angular/core";
+
+@Injectable({ providedIn: "root" })
+export class SocketService {
+    private url = 'http://localhost:3000';
+    private socket;
+
+    constructor() {
+        if (!this.socket) 
+            this.socket = io(this.url), {transports: ['websocket']};
+    }
+
+    public sendMessage(message) {
+        this.socket.emit('GroupAdded', message);
+    }
+
+    public getMessages = () => {
+        console.log("getMessages");
+        return Observable.create((observer) => {
+            this.socket.on('GroupAdded', (message) => {
+                observer.next(message);
+            });
+        });
+    }
+
+    public closeUserSocket(){
+        // Setup the socket namespace subscription
+if (!this.socket) {
+    // Initialize user permissions socket
+    //this.socket = io(NTC_API_URL + `/user/${this.socket.userID}`, { secure: true });
+}
+
+    }
+}
