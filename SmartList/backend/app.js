@@ -9,6 +9,8 @@ const checklistsRoutes = require("./routes/checklists");
 const checklistItemsRoutes = require("./routes/checklistItems");
 const groupsHLLRoutes = require("./routes/groups.HLL");
 const groupsChecklistsRoutes = require("./routes/groups.checklists");
+const resetdb = require("./models/initDB");
+
 
 const app = express();
 
@@ -24,6 +26,9 @@ mongoose
   .catch(() => {
     console.log("Connection failed!");
   });
+
+resetdb.resetDB();
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));

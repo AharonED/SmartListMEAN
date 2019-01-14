@@ -40,12 +40,11 @@ import { ChecklistItemsCreateComponent } from './components/checklistItems/check
 import { ChecklistItemsListComponent } from './components/checklistItems/checklist-items-list/checklist-items-list.component';
 import { GroupsHLLComponent } from './components/groups/groups-hll/groups-hll.component';
 import { HLLPipe } from './Pipes/HLLPipe';
-import { AreaChartComponent } from './components/area-chart/area-chart.component';
 import { GroupsChecklistsComponent } from './components/groups-checklists/groups-checklists.component';
 import { BarchartComponent } from './components/shared/barchart/barchart.component';
 import { TwoWaysBindingsComponent } from './components/two-ways-bindings/two-ways-bindings.component';
 
-
+//Google Maps API Key= AIzaSyCnqVDFETbVC1F2tK3JN9rRyv0e3S-dIsI
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,7 +56,6 @@ import { TwoWaysBindingsComponent } from './components/two-ways-bindings/two-way
     EmailComponent, GroupCreateComponent, GroupListComponent, ChecklistListComponent, ChecklistCreateComponent,  ChecklistItemsCreateComponent, ChecklistItemsListComponent, 
     SignupComponent, GroupsHLLComponent,
     HLLPipe,
-    AreaChartComponent,
     GroupsChecklistsComponent,
     BarchartComponent,
     TwoWaysBindingsComponent
