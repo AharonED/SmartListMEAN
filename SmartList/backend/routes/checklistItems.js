@@ -112,7 +112,7 @@ const checklistItemsQuery = ChecklistItems.find().where('checklistId').equals(Ob
   checklistItemsQuery
     .then(documents => {
       fetchedChecklistItems = documents;
-      return ChecklistItems.count();
+      return ChecklistItems.find().where('checklistId').equals(ObjectId(checklistId)).count();
     })
     .then(count => {
       res.status(200).json({

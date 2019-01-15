@@ -121,7 +121,7 @@ let groupQuery;
   groupQuery.find()
     .then(documents => {
       fetchedGroups = documents;
-      return Group.count();
+      return Group.find((filter!=""?JSON.parse(filter):null)).count();
     })
     .then(count => {
       res.status(200).json({

@@ -85,7 +85,7 @@ export class ChecklistCreateComponent implements OnInit {
             //id: this.checklist.id,
             title: this.checklist.title,
             description: this.checklist.description,
-            image: this.checklist.imagePath,
+            image: "",//this.checklist.imagePath,
             group: this.checklist.group//,
             //checklistItems: null
           });

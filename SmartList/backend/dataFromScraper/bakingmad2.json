@@ -2,7 +2,7 @@
  "Groups": [
   {
    "GroupTitle": "Afternoon Tea",
-   "GroupURL": "https://www.bakingmad.com/recipes/afternoon-tea",
+   "GroupURL": "http://localhost:3000/images/Afternoon-Tea_2.jpg",
    "Checklists": [
     {
      "ChecklistTitle": "Mini Pink Eclairs",
@@ -1886,7 +1886,7 @@
   },
   {
    "GroupTitle": "Al Fresco Dining",
-   "GroupURL": "https://www.bakingmad.com/recipes/al-fresco",
+   "GroupURL": "http://localhost:3000/images/Al-Fresco.jpg",
    "Checklists": [
     {
      "ChecklistTitle": "Chocolate Chip Cookie Cones",
@@ -3565,7 +3565,7 @@
   },
   {
    "GroupTitle": "Artisan Breads",
-   "GroupURL": "https://www.bakingmad.com/recipes/artisan-breads",
+   "GroupURL": "http://localhost:3000/images/1-Berry-bread-web.jpg",
    "Checklists": [
     {
      "ChecklistTitle": "Beetroot Bread"
@@ -5140,7 +5140,7 @@
   },
   {
    "GroupTitle": "Boozy Bakes",
-   "GroupURL": "https://www.bakingmad.com/recipes/boozy-bakes",
+   "GroupURL": "http://localhost:3000/images/DefaultCookies.jpg",
    "Checklists": [
     {
      "ChecklistTitle": "Mojito Cupcakes",
@@ -7075,7 +7075,7 @@
   },
   {
    "GroupTitle": "Breakfast & Brunch",
-   "GroupURL": "https://www.bakingmad.com/recipes/breakfast",
+   "GroupURL": "http://localhost:3000/images/DefaultCookies.jpg",
    "Checklists": [
     {
      "ChecklistTitle": "Nielsen-Massey Fruity Breakfast Muffins",
@@ -8071,7 +8071,7 @@
   },
   {
    "GroupTitle": "British Bakes",
-   "GroupURL": "https://www.bakingmad.com/recipes/best-of-british-bakes",
+   "GroupURL": "http://localhost:3000/images/DefaultCookies.jpg",
    "Checklists": [
     {
      "ChecklistTitle": "Cherry Jam"
@@ -9111,7 +9111,7 @@
   },
   {
    "GroupTitle": "Celebrity Bakes",
-   "GroupURL": "https://www.bakingmad.com/recipes/celebrity-bakes",
+   "GroupURL": "http://localhost:3000/images/DefaultCookies.jpg",
    "Checklists": [
     {
      "ChecklistTitle": "Rhubarb Plate Pie",
@@ -10413,7 +10413,7 @@
   },
   {
    "GroupTitle": "Child Friendly",
-   "GroupURL": "https://www.bakingmad.com/recipes/kids-baking",
+   "GroupURL": "http://localhost:3000/images/DefaultCookies.jpg",
    "Checklists": [
     {
      "ChecklistTitle": "Pizza Dough by Allinson",
@@ -11641,7 +11641,7 @@
   },
   {
    "GroupTitle": "Coffee Shop Bakes",
-   "GroupURL": "https://www.bakingmad.com/recipes/coffee-shop-bakes",
+   "GroupURL": "http://localhost:3000/images/DefaultCookies.jpg",
    "Checklists": [
     {
      "ChecklistTitle": "Belgian Chocolate Truffle Torte Layer Cake with Chocolate Orange Ganache",
@@ -12258,7 +12258,7 @@
   },
   {
    "GroupTitle": "Comfort Food",
-   "GroupURL": "https://www.bakingmad.com/recipes/comfort-food",
+   "GroupURL": "http://localhost:3000/images/DefaultCookies.jpg",
    "Checklists": [
     {
      "ChecklistTitle": "Giant Sharing Cookie"
@@ -12494,7 +12494,7 @@
   },
   {
    "GroupTitle": "Desserts for Two",
-   "GroupURL": "https://www.bakingmad.com/recipes/desserts-for-two",
+   "GroupURL": "http://localhost:3000/images/DefaultCookies.jpg",
    "Checklists": [
     {
      "ChecklistTitle": "Classic chocolate mousse",
@@ -13524,7 +13524,7 @@
   },
   {
    "GroupTitle": "Floral Flavours",
-   "GroupURL": "https://www.bakingmad.com/recipes/floral-flavours",
+   "GroupURL": "http://localhost:3000/images/DefaultCookies.jpg",
    "Checklists": [
     {
      "ChecklistTitle": "Floral Ice Lollies",

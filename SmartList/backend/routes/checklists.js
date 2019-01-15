@@ -110,7 +110,7 @@ const checklistQuery = Checklist.find((filter!=""?JSON.parse(filter):null)).wher
   checklistQuery
     .then(documents => {
       fetchedChecklists = documents;
-      return Checklist.count();
+      return Checklist.find((filter!=""?JSON.parse(filter):null)).where('group').equals(ObjectId(group)).count();
     })
     .then(count => {
       res.status(200).json({
