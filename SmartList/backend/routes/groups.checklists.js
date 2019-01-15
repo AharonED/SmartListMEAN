@@ -3,6 +3,7 @@ const express = require("express");
 const multer = require("multer");
 
 const Group = require("../models/group");
+const Checklist = require("../models/checklist");
 
 const router = express.Router();
 
@@ -37,6 +38,35 @@ const storage = multer.diskStorage({
 router.get("", (req, res, next) => {
 
   
+
+Group.aggregate([
+    {
+      $lookup:
+        {
+          from: "checklists",
+          localField: "_id",
+          foreignField: "group",
+          as: "Checklists"
+        }
+   },
+   {
+    $project: {
+      _id: 0, 
+      title: 1,
+      ChecklistsCount: { $size: '$Checklists' },
+    }
+  }
+  ]).then(groups =>{
+      if (groups) {
+         console.log(groups);
+         
+        res.status(200).json(groups);
+      } else {
+        res.status(404).json({ message: "Group not found!" });
+      }
+    });
+    
+/*
     const groupQuery =  Group.aggregate(
       groups = [
         // Un-wind the array's to access filtering 
@@ -65,8 +95,9 @@ router.get("", (req, res, next) => {
       res.status(404).json({ message: "Group not found!" });
     }
   });
-
-
+*/
+  ///
+  ///
 
 });
 

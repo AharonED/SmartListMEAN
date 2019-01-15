@@ -27,7 +27,9 @@ mongoose
     console.log("Connection failed!");
   });
 
-resetdb.resetDB();
+///////////////////////////////////////////////////
+//  resetdb.resetDB();
+///////////////////////////////////////////////////
 
 
 app.use(bodyParser.json());

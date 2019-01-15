@@ -32,6 +32,8 @@ export class GroupsChecklistsComponent implements OnInit {
     this.chartData = [];
     this.groupsService.getGroupChecklistsCountTop10().subscribe(groupData => {
       const groups = JSON.stringify(groupData);
+      console.log(groupData);
+
       var arr:Array<any>;
       arr = JSON.parse(groups, (key, value) => {
         if (typeof value === 'string') {
@@ -39,7 +41,7 @@ export class GroupsChecklistsComponent implements OnInit {
         }
         return value;
       });
-      //console.log(arr);
+      console.log(arr);
 
 
       this.chartData = [];
@@ -47,8 +49,8 @@ export class GroupsChecklistsComponent implements OnInit {
       for (let i = 0; i < arr.length; i++) {
         item=arr.pop();
         this.chartData.push([
-          item["_id"],
-          item["count"]
+          item["title"],
+          item["ChecklistsCount"]
         ]);
       }
 

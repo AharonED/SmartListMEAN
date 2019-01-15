@@ -31,8 +31,9 @@ export class GroupsHLLService {
 
   getGroupChecklistsCountTop10() {
     return this.http.get<{
-      _id: string;
-      count: number;
+      //_id: string;
+      title: string;
+      ChecklistsCount: number;
     }>("http://localhost:3000/api/groupsChecklists" );
   }
   
