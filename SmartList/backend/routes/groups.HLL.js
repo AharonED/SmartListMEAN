@@ -3,6 +3,7 @@ const express = require("express");
 const multer = require("multer");
 
 const Group = require("../models/group");
+const Checklist = require("../models/checklist");
 
 const router = express.Router();
 
@@ -64,6 +65,11 @@ router.get("", (req, res, next) => {
     });
 */
 
+
+/////////////////////
+//Count distinct Groups title
+////////////////////
+/*
   const groupQuery = Group.find().then(groups => {
     if (groups) {
       //var gr = require("../models/group");
@@ -87,6 +93,41 @@ router.get("", (req, res, next) => {
       //console.log(h.estimate());
       res.status(200).json(h.estimate() );
   }) ;
+*/
+
+
+/////////////////////
+//Count distinct Checklist description's words
+////////////////////
+
+  Checklist.find().then(checklists => {
+    if (checklists) {
+      //var gr = require("../models/group");
+      //gr  = group;
+
+        for (var gr1 in checklists) {
+          //gr1 contains the index on array
+          gr0= checklists[gr1];     // get value
+          //console.log(gr0.description);
+          var gr = Object.assign(new Checklist, gr0);  
+          //console.log(gr);
+          if( ( gr.description) && !(typeof gr.description == 'undefined'))
+          {
+            //console.log(gr.description);
+            var arr = gr.description.split(' ');
+            for(var word in arr)
+            {
+              h.insert(word);
+            }
+          }
+        }
+      }
+    }).then(()=>{
+      //console.log(h.estimate());
+      res.status(200).json(h.estimate() );
+  }) ;
+
+
 });
 
 module.exports = router;
