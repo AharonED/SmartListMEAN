@@ -12,7 +12,8 @@ import {
   MatExpansionModule,
   MatProgressSpinnerModule,
   MatPaginatorModule ,
-  MatTableModule
+  MatTableModule,
+  MatGridListModule
 } from "@angular/material";
 
 import { AppComponent } from "./app.component";
@@ -74,6 +75,7 @@ import { TwoWaysBindingsComponent } from './components/two-ways-bindings/two-way
     MatProgressSpinnerModule,
     MatPaginatorModule,
     MatTableModule,
+    MatGridListModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase, 'angular-auth-firebase'),
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features    

@@ -63,11 +63,21 @@ exports.resetDB = function( ) {
                       if( !(typeof groupMap[group.title].Checklists === 'undefined'))
                       {
                       var checklistMap = {};
-                      for( var j = 0; j < groupMap[group.title].Checklists.length; j++ ) {
+                        for( var j = 0; j < groupMap[group.title].Checklists.length; j++ ) {
+                          var desc= groupMap[group.title].Checklists[j].checklistDescription;
+
+                          if( !(typeof groupMap[group.title].Checklists[j].Ingredients === 'undefined'))
+                          {
+                           desc = desc + " --- Ingredients: ";
+                            for( var x = 0; x < groupMap[group.title].Checklists[j].Ingredients.length; x++ ) {
+                              desc = desc + " " + groupMap[group.title].Checklists[j].Ingredients[x].IngredientName
+                              desc = desc + ":" + groupMap[group.title].Checklists[j].Ingredients[x].IngredientValue + ","
+                            }
+                        }
                         const checklist = new Checklist({
                           //_id: req.body.id,
                           title: groupMap[group.title].Checklists[j].ChecklistTitle,
-                          description: groupMap[group.title].Checklists[j].checklistDescription,
+                          description: desc, //groupMap[group.title].Checklists[j].checklistDescription ,
                           //Ingrident................
                           imagePath: "", //imagePath,
                           group: group._id
