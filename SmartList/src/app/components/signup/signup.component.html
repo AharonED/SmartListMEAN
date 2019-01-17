@@ -19,8 +19,15 @@
 
       <br>
       <mat-form-field>
-          <input matInput type="text" formControlName="address" placeholder="Address">
+          <input google-place  (onSelect)="setAddress($event)" matInput type="text" formControlName="address" placeholder="Type to search Address..."     class="google-place-input" >
           <mat-error *ngIf="form.get('address').invalid">Please enter a valid Addreess.</mat-error>
+          <!-- Displaying the contents of the address object received from our event emitter -->
+            <ul style="list-style-type: none;">
+                <li *ngFor="let key of addrKeys">
+                <span style="font-weight: bold">{{key}}</span>: <span>{{addr[key]}}</span>
+                </li>
+            </ul>
+
       </mat-form-field>
       <br>
       <mat-form-field>
@@ -40,6 +47,44 @@
       <div class="row">
           &nbsp;
       </div>
-  </form>
+      <!--
+      <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
+            <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+      </agm-map>
+        -->
+
+      <agm-map 
+      [latitude]="latitude"
+      [longitude]="longitude"
+      [zoom]="zoom"
+      [disableDefaultUI]="false"
+      [zoomControl]="false"
+      (mapClick)="mapClicked($event)">
+    
+      <agm-marker 
+          *ngFor="let m of markers; let i = index"
+          (markerClick)="clickedMarker(m.label, i)"
+          [latitude]="m.lat"
+          [longitude]="m.lng"
+          [label]="m.label"
+          [markerDraggable]="m.draggable"
+          (dragEnd)="markerDragEnd(m, $event)">
+          
+        <agm-info-window>
+          <strong>InfoWindow content</strong>
+        </agm-info-window>
+        
+      </agm-marker>
+      
+      <agm-circle [latitude]="latitude + 0.3" [longitude]="longitude" 
+          [radius]="5000"
+          [fillColor]="'red'"
+          [circleDraggable]="true"
+          [editable]="true">
+      </agm-circle>
+    
+    </agm-map>
+
+    </form>
 </div>
 </mat-card>

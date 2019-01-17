@@ -41,6 +41,8 @@ import { HLLPipe } from './Pipes/HLLPipe';
 import { GroupsChecklistsComponent } from './components/groups-checklists/groups-checklists.component';
 import { BarchartComponent } from './components/shared/barchart/barchart.component';
 import { TwoWaysBindingsComponent } from './components/two-ways-bindings/two-ways-bindings.component';
+import { GooglePlacesDirective } from './directives/google-places.directive';
+import { AgmCoreModule } from '@agm/core';
 
 //Google Maps API Key= AIzaSyCnqVDFETbVC1F2tK3JN9rRyv0e3S-dIsI
 @NgModule({
@@ -53,9 +55,14 @@ import { TwoWaysBindingsComponent } from './components/two-ways-bindings/two-way
     HLLPipe,
     GroupsChecklistsComponent,
     BarchartComponent,
-    TwoWaysBindingsComponent
+    TwoWaysBindingsComponent,
+    GooglePlacesDirective
   ],
   imports: [
+    AgmCoreModule.forRoot({
+      apiKey: "AIzaSyCnqVDFETbVC1F2tK3JN9rRyv0e3S",
+      libraries: ["places"]
+    }),
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
