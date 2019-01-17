@@ -4,7 +4,7 @@ import { Component } from "@angular/core";
 import { Injectable } from "@angular/core";
 
 import { Router, Route } from '@angular/router';
-import { AuthService } from '../../auth.service';
+import { AuthService } from '../../services/auth.service';
 
 
 @Component({

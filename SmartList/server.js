@@ -52,7 +52,14 @@ server.on("listening", onListening);
 server.listen(port);
 
 
-///////
+
+
+////////////////////////////////////////////////////////////////
+//using websockets for 2-way-bonding in case of adding new group.
+//each users registers after logingin and server establish connection.
+//when user add new group, it use the groups-service for adding to DB, imidiate after that, the service 
+//call the server emitter for notifying all entier users for adding new group...
+////////////////////////////////////////////////////////////////
 //var express = require('express');
 //var app = express();
 //var server = require('http').createServer(app);
@@ -74,35 +81,11 @@ console.log("new connection");
 		client.broadcast.emit('add user', name); 
     });
 
-		/**
-		 *	Add all current chatters to the current client’s chatters list
-		 */
-/*
-		redisClient.smembers('chatters', function(error, names) {
-			names.forEach(function(name) {
-				client.emit('add user', name);
-			});
-		});
-
-*/
-		/**
-		 *	Add latest chat messages to current client
-		 */
-/*		
-		redisClient.lrange('messages', 0, -1, function( error, messages) {
-			messages = messages.reverse();
-
-			messages.forEach(function(message) {
-				message = JSON.parse(message);
-				client.emit('messages',message.name + ' : ' + message.data);
-			});
-		});
-	});
-*/
+		
 
 	/**
 	 *	When a message comes through, get the name and broadcast the messsage
-	 *	Store the message after we get the nicname
+	 *	send broadcast message to update all users
 	 */
 
 	client.on('message', function(message) {
@@ -112,6 +95,9 @@ console.log("new connection");
 	});
 
   
+	/**
+	 *	Notify all users whan new Group was added
+	 */
 
 	client.on('AddGroup', function(GroupCount) {
     console.log('server event: get message AddGroup ' + GroupCount);

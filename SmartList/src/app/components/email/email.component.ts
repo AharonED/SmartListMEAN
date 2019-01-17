@@ -7,7 +7,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { ActivatedRoute, ParamMap } from "@angular/router";
 //import { AuthGuard } from '../../auth.service';
-import { AuthService } from '../../auth.service';
+import { AuthService } from '../../services/auth.service';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 @Component({
@@ -30,7 +30,7 @@ export class EmailComponent implements OnInit {
       
       this.af.authState.subscribe(auth => { 
         if(auth) {
-          //this.router.navigateByUrl('/note-list');
+          //this.router.navigateByUrl('/groups-list');
         }
       });
   }

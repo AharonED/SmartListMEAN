@@ -1,5 +1,5 @@
 // services/auth-guard.service.ts
-import { AuthService } from '../auth.service';
+import { AuthService } from './auth.service';
 import { Injectable } from '@angular/core';
 import { Router, CanActivate } from '@angular/router';
 @Injectable()

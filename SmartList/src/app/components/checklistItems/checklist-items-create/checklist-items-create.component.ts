@@ -4,11 +4,11 @@ import { ActivatedRoute, ParamMap } from "@angular/router";
 
 import { ChecklistItemsService } from "../../../services/checklistItems.service";
 import { ChecklistItem } from "../../../Model/checklistItem.model";
-import { mimeType } from "../../../notes/note-create/mime-type.validator";
+import { mimeType } from "../../../validators/mime-type.validator";
 
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Router } from '@angular/router';
-import { AuthService } from '../../../auth.service';
+import { AuthService } from '../../../services/auth.service';
 import { group } from "@angular/animations";
 
 @Component({

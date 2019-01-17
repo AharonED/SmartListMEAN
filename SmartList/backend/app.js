@@ -3,13 +3,13 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
-const notesRoutes = require("./routes/notes");
 const groupsRoutes = require("./routes/groups");
 const checklistsRoutes = require("./routes/checklists");
 const checklistItemsRoutes = require("./routes/checklistItems");
 const groupsHLLRoutes = require("./routes/groups.HLL");
 const groupsChecklistsRoutes = require("./routes/groups.checklists");
 const resetdb = require("./models/initDB");
+const usersRoutes = require("./routes/users");
 
 
 const app = express();
@@ -28,7 +28,7 @@ mongoose
   });
 
 ///////////////////////////////////////////////////
-  resetdb.resetDB();
+//  resetdb.resetDB();
 ///////////////////////////////////////////////////
 
 
@@ -51,8 +51,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("/api/notes", notesRoutes);
-//app.use("/api/users", usersRoutes);
+app.use("/api/users", usersRoutes);
 app.use("/api/groups", groupsRoutes);
 app.use("/api/checklists", checklistsRoutes);
 app.use("/api/checklistItems", checklistItemsRoutes);
