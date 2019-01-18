@@ -36,8 +36,8 @@ export class SignupComponent implements OnInit {
   email:String;
   password: String;
   address: String;
-  latitude: number = 51.673858;;
-  longitude: number = 7.815982;
+  latitude: number = 31.776615;
+  longitude: number = 35.234479;
 
   zoom:number = 8;
 
