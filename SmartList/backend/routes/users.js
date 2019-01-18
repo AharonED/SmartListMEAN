@@ -37,6 +37,7 @@ const MIME_TYPE_MAP = {
     // GET Routes
     // --------------------------------------------------------
     // Retrieve records for all users in the db
+    /*
     router.get("", (req, res, next) => {
         // Uses Mongoose schema to run the search (empty conditions)
         var query = User.find({});
@@ -48,6 +49,38 @@ const MIME_TYPE_MAP = {
             res.json(users);
         });
     });
+*/
+
+    router.get("", (req, res, next) => {
+        const pageSize = +req.query.pagesize;
+        const currentPage = +req.query.page;
+        const filter = req.query.filter;
+      console.log(filter);
+        
+      let userQuery;
+      
+      
+        userQuery = User.find((filter!=""?JSON.parse(filter):null));
+      
+        let fetchedUsers;
+        if (pageSize && currentPage) {
+          userQuery.skip(pageSize * (currentPage - 1)).limit(pageSize);
+        }
+        userQuery.find()
+          .then(documents => {
+            fetchedUsers = documents;
+            return User.find((filter!=""?JSON.parse(filter):null)).count();
+          })
+          .then(count => {
+              console.log(fetchedUsers);
+            res.status(200).json({
+              message: "Users fetched successfully!",
+              users: fetchedUsers,
+              maxUsers: count
+            });
+          });
+      });
+          
 
     // POST Routes
     // --------------------------------------------------------

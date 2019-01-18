@@ -21,13 +21,16 @@ export class UsersService {
       )
       .pipe(
         map(userData => {
+          console.log(userData);
+
           return {
             users: userData.users.map(user => {
+              console.log(user);
               return {
                 email: user.email,
                 address: user.address,
-                longitude: user.longitude,
-                latitude: user.latitude
+                longitude: user.location[0],
+                latitude: user.location[1]
               };
             }),
             maxUsers: userData.maxUsers
@@ -44,7 +47,7 @@ export class UsersService {
   }
 
   getUserUpdateListener() {
-    //return this.UsersUpdated.asObservable();
+    return this.usersUpdated.asObservable();
   }
 
   getUser(id: string) {

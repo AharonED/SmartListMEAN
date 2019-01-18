@@ -19,6 +19,9 @@ declare var google:any;
 
 
 import { MouseEvent } from '@agm/core';
+import { User } from "../../Model/user";
+import { Subscription } from "rxjs";
+
 
 @Component({
   selector: 'app-signup',
@@ -47,6 +50,15 @@ export class SignupComponent implements OnInit {
   public addrKeys: string[];
   public addr: object;
   
+  UsersCount : number=1;
+
+  users: User[] = [];
+  totalUsers = 0;
+  usersPerPage = 10;
+  currentPage = 1;
+  pageSizeOptions = [10, 20, 50, 100];
+  private usersSub: Subscription;
+  usersAll: User[] = [];
 
   constructor(public af: AngularFireAuth,private router: Router, public usersService:UsersService, private zone: NgZone, private __loader: MapsAPILoader) {
       
@@ -57,6 +69,27 @@ export class SignupComponent implements OnInit {
     });
 
   }
+
+  markers: marker[] =[];/* = [
+    {
+      lat: 51.673858,
+      lng: 7.815982,
+      label: 'A',
+      draggable: true
+    },
+    {
+      lat: 51.373858,
+      lng: 7.215982,
+      label: 'B',
+      draggable: false
+    },
+    {
+      lat: 51.723858,
+      lng: 7.895982,
+      label: 'C',
+      draggable: true
+    }
+  ]*/
 
 
   onSubmit() {
@@ -106,7 +139,31 @@ export class SignupComponent implements OnInit {
       latitude: new FormControl(null, { validators: [Validators.required] }),
       longitude: new FormControl(null, { validators: [Validators.required] }),
     });
-}
+
+
+    //Load all users on GoogleMap
+    this.usersService.getUsers(this.usersPerPage, this.currentPage);
+    this.usersSub = this.usersService
+      .getUserUpdateListener()
+      .subscribe((userData: {users: User[], userCount: number}) => {
+        this.isLoading = false;
+        this.totalUsers = userData.userCount;
+        this.users = userData.users;
+        this.usersAll = userData.users;
+
+
+        for( var i = 0; i < this.usersAll.length; i++ ) {
+          console.log(this.usersAll[i].email);
+          this.markers.push({
+            lat: this.usersAll[i].latitude,
+            lng: this.usersAll[i].longitude,
+            label: this.usersAll[i].email,
+            draggable: true
+          });
+        }
+      });
+
+    }
 
   //Method to be invoked everytime we receive a new instance 
   //of the address object from the onSelect event emitter.
@@ -191,27 +248,9 @@ markerDragEnd(m: marker, $event: MouseEvent) {
   console.log('dragEnd', m, $event);
 }
 
-markers: marker[] = [
-  {
-    lat: 51.673858,
-    lng: 7.815982,
-    label: 'A',
-    draggable: true
-  },
-  {
-    lat: 51.373858,
-    lng: 7.215982,
-    label: 'B',
-    draggable: false
-  },
-  {
-    lat: 51.723858,
-    lng: 7.895982,
-    label: 'C',
-    draggable: true
-  }
-]
+
 }
+
 
 // just an interface for type safety.
 interface marker {
