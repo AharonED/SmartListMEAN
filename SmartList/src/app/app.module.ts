@@ -38,7 +38,7 @@ import { ChecklistItemsCreateComponent } from './components/checklistItems/check
 import { ChecklistItemsListComponent } from './components/checklistItems/checklist-items-list/checklist-items-list.component';
 import { GroupsHLLComponent } from './components/groups/groups-hll/groups-hll.component';
 import { HLLPipe } from './Pipes/HLLPipe';
-import { GroupsChecklistsComponent } from './components/groups-checklists/groups-checklists.component';
+import { StatisticsComponent } from './components/Statistics/Statistics.component';
 import { BarchartComponent } from './components/shared/barchart/barchart.component';
 import { TwoWaysBindingsComponent } from './components/two-ways-bindings/two-ways-bindings.component';
 import { GooglePlacesDirective } from './directives/google-places.directive';
@@ -54,7 +54,7 @@ import { D3ChartDirective } from './directives/d3-chart.directive';
     EmailComponent, GroupCreateComponent, GroupListComponent, ChecklistListComponent, ChecklistCreateComponent,  ChecklistItemsCreateComponent, ChecklistItemsListComponent, 
     SignupComponent, GroupsHLLComponent,
     HLLPipe,
-    GroupsChecklistsComponent,
+    StatisticsComponent,
     BarchartComponent,
     TwoWaysBindingsComponent,
     GooglePlacesDirective,

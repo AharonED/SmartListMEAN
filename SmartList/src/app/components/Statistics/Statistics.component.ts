@@ -4,12 +4,12 @@ import { GroupsHLLService } from "../../services/groups-hll.service";
 import { forEach } from '@angular/router/src/utils/collection';
 
 @Component({
-  selector: 'groups-checklists',
-  templateUrl: './groups-checklists.component.html',
-  styleUrls: ['./groups-checklists.component.css']
+  selector: 'Statistics',
+  templateUrl: './Statistics.component.html',
+  styleUrls: ['./Statistics.component.css']
 })
 
-export class GroupsChecklistsComponent implements OnInit {
+export class StatisticsComponent implements OnInit {
   chartData: Array<any>;
 
   constructor(public groupsService :GroupsHLLService) {}
