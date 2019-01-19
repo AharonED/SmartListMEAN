@@ -26,7 +26,7 @@ export class GooglePlacesDirective implements OnInit {
 */
 
 import { Directive, ElementRef, OnInit, Output, EventEmitter } from '@angular/core';
-
+ 
 declare var google:any;
 
 @Directive({

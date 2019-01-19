@@ -43,6 +43,7 @@ import { BarchartComponent } from './components/shared/barchart/barchart.compone
 import { TwoWaysBindingsComponent } from './components/two-ways-bindings/two-ways-bindings.component';
 import { GooglePlacesDirective } from './directives/google-places.directive';
 import { AgmCoreModule } from '@agm/core';
+import { D3ChartDirective } from './directives/d3-chart.directive';
 
 //Google Maps API Key= AIzaSyCnqVDFETbVC1F2tK3JN9rRyv0e3S-dIsI
 @NgModule({
@@ -56,7 +57,8 @@ import { AgmCoreModule } from '@agm/core';
     GroupsChecklistsComponent,
     BarchartComponent,
     TwoWaysBindingsComponent,
-    GooglePlacesDirective
+    GooglePlacesDirective,
+    D3ChartDirective
   ],
   imports: [
     AgmCoreModule.forRoot({
