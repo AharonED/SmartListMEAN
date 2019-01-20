@@ -64,18 +64,7 @@ router.post(
       console.log("Group.count" + count+1);
       global.getIO.sockets.emit('GroupAdded', count+1);
     });
-
-
-/*     Group.count((err,count)=>{
-      console.log("Group.count" + count+1);
-      global.getIO.sockets.emit('GroupAdded', count+1);
-    });
- */
-/////////////////
-//Use HyperLogLog HLL for couning distindt all the
-////////////////
-
-    
+  
   }
 );
 
@@ -114,6 +103,8 @@ let groupQuery;
 
   groupQuery = Group.find((filter!=""?JSON.parse(filter):null));
 
+console.log("pageSize" + pageSize + "-" +  currentPage);
+
   let fetchedGroups;
   if (pageSize && currentPage) {
     groupQuery.skip(pageSize * (currentPage - 1)).limit(pageSize);
@@ -147,8 +138,21 @@ router.get("/:id", (req, res, next) => {
 router.delete("/:id", (req, res, next) => {
   Group.deleteOne({ _id: req.params.id }).then(result => {
     console.log(result);
+
+    /////////////////
+    //Socket smits all client with current count of groups
+    ///////////////
+    //execute cocket emmiter for notifying all observerable.
+    Group.estimatedDocumentCount((err,count)=>{
+      console.log("Group.count" + count);
+      global.getIO.sockets.emit('GroupAdded', count);
+    });    
     res.status(200).json({ message: "Group deleted!" });
   });
+
+
+
+  
 });
 
 module.exports = router;

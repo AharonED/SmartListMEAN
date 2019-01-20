@@ -1,13 +1,14 @@
 import { Component, OnInit,Output } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { ActivatedRoute, ParamMap } from "@angular/router";
+import { Router } from '@angular/router';
+
 
 import { GroupsService } from "../../../services/groups.service";
 import { Group } from "../../../Model/group.model";
 import { mimeType } from "../../../validators/mime-type.validator";
 
 import { AngularFireAuth } from 'angularfire2/auth';
-import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 
 @Component({
@@ -29,8 +30,8 @@ export class GroupCreateComponent implements OnInit {
   constructor(
     public groupsService: GroupsService,
     public route: ActivatedRoute,
-    public auth: AuthService//,
-    //private router: Router
+    public auth: AuthService,
+    public router2: Router
   ) {
 /*      if(this.auth) {
         if(this.auth.isLoggedIn) {
@@ -113,4 +114,13 @@ export class GroupCreateComponent implements OnInit {
     }
     this.form.reset();
   }
+
+  onDelete(groupId: string) {
+    this.isLoading = true;
+    this.groupsService.deleteGroup(groupId).subscribe(() => {
+      //this.groupsService.getGroups(this.groupsPerPage, this.currentPage);
+      this.router2.navigate(['/group-list']);
+    });
+  }
+
 }

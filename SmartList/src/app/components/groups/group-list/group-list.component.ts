@@ -27,24 +27,37 @@ export class GroupListComponent implements OnInit, OnDestroy {
   filterByDesc : boolean=true;
   filterByImage : boolean=true;
   filterValue: string;
-  groupsAll: Group[] = [];
+//  groupsAll: Group[] = [];
  
-  constructor(public groupsService: GroupsService) {}
+  constructor(public groupsService: GroupsService) {
+    this.groups = [];
+  }
 
   ngOnInit() {
     this.isLoading = true;
-    this.groupsService.getGroups(this.groupsPerPage, this.currentPage);
+    //this.groupsService.getGroups(this.groupsPerPage, this.currentPage);
+console.log("ngOnInit");
+console.log("totalGroups = " + (this.totalGroups + ""));
+console.log("  groupsPerPage = " + (this.groupsPerPage + ""));
+console.log("  currentPage = " + (this.currentPage + ""));
+
     this.groupsSub = this.groupsService
       .getGroupUpdateListener()
       .subscribe((groupData: {groups: Group[], groupCount: number}) => {
         this.isLoading = false;
         this.totalGroups = groupData.groupCount;
         this.groups = groupData.groups;
-        this.groupsAll = groupData.groups;
+//        this.groupsAll = groupData.groups;
+        console.log("subscribe");
+
       });
+
+      this.applyFilter("");
   }
 
   onChangedPage(pageData: PageEvent) {
+    console.log("  onChangedPage");
+
     this.isLoading = true;
     this.currentPage = pageData.pageIndex + 1;
     this.groupsPerPage = pageData.pageSize;
@@ -61,37 +74,10 @@ export class GroupListComponent implements OnInit, OnDestroy {
 
 
   applyFilter(filterValue) {
-    //console.log("filter: " + filterValue);    
-    //console.log(this.filterByTitle);
-    //console.log(this.filterByDesc);
-/*
-    if(filterValue=="")
-      this.groups = this.groupsAll;
-    else
-      this.groups = this.groupsAll.filter(
-        //this.filter
-          (group: Group) => 
-          (
-            ((this.filterByTitle==true) && group.title.trim().toLowerCase() == filterValue.trim().toLowerCase())
-            ||
-            ((this.filterByDesc==true) && group.description.trim().toLowerCase() == filterValue.trim().toLowerCase())
-            ||
-            ((this.filterByImage==true) && group.imagePath.trim().toLowerCase().indexOf(filterValue.trim().toLowerCase())>0)
-          ) 
-        );
-
-*/
-
-
-//12. To do an or check with multiple keys use $or
-//db.testdb.find({"$or" : [{"status" : "dropout"}, {"gpa" : {"$lt" : 3.0}}]}, {"name" : 1, "_id" : 0})
- 
   this.filterValue=filterValue;
   var filterarr:string [] =[];
   var filter : string;
-    if(filterValue=="")
-      this.groups = this.groupsAll;
-    else
+    if(filterValue!="")
     {
       if ((this.filterByTitle==true) )
       filterarr.push('{"title" : "' + filterValue + '"}');
@@ -100,6 +86,13 @@ export class GroupListComponent implements OnInit, OnDestroy {
       if ((this.filterByImage==true) )
       filterarr.push('{"imagePath" : "' + filterValue + '"}');
     } 
+
+//-*/*/*/*/ 
+//When calling to service, and applying filter - the service invoke the 
+//getGroupUpdateListener 
+//and update all local data memebers: 
+//this.groups and this.groupsAll
+
     if(filterarr.length>0)
     {
       filter = filterarr.join(",");
@@ -136,5 +129,6 @@ export class GroupListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.groupsSub.unsubscribe();
+    console.log("ngOnDestroy");
   }
 }

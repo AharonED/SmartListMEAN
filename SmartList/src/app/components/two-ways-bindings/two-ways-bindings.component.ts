@@ -25,6 +25,10 @@ export class TwoWaysBindingsComponent implements OnInit {
 
   @Output() counterChange :  EventEmitter<number>;
 
+@Input() public groupsPerPage = 10;
+@Input() public currentPage = 1;
+
+
   constructor(public groupsService:GroupsService, public socketService:SocketService ) { 
     this.counterChange = new EventEmitter();
     
@@ -50,7 +54,7 @@ export class TwoWaysBindingsComponent implements OnInit {
    });
 
    //Load default value - current actual count value
-   this.groupsService.getGroups(1, 1);
+   this.groupsService.getGroups(this.groupsPerPage, this.currentPage);
    this.groupsSub = this.groupsService
      .getGroupUpdateListener()
      .subscribe((groupData: {groups: Group[], groupCount: number}) => {
