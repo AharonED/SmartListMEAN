@@ -35,3 +35,36 @@ Database Users:
     ]
 }
 Password: Mazda5Gray
+
+
+
+-------------------------------------------
+
+
+npm i @angular/cli
+npm install -g @angular/cli
+npm install typescript -g
+ng update –all 
+npm i @types/node
+npm i cors –save
+
+cd D:\_Private\CollegeOfMang\Angular\
+git clone https://github.com/AharonED/SmartListMEAN.git
+git init
+git remote add origin https://github.com/AharonED/SmartListMEAN.git
+git remote –v
+git config --global user.mail aharon@ald.co.il
+D:\_Private\CollegeOfMang\Angular\SmartListMEAN> git branch --set-upstream-to=origin/master
+
+
+MONGO
+
+C:\Program Files\MongoDB\Server\4.0\bin> mongo ds026658.mlab.com:26658/smartlistmean -u smartlistmean -p Mazda5Gray
+
+
+ds026658.mlab.com:26658
+mongodb://<dbuser>:<dbpassword>@ds026658.mlab.com:26658/smartlistmean
+mongodb://smartlistmean:Mazda5Gray@ds026658.mlab.com:26658/smartlistmean", { useNewUrlParser: true }
+
+
+mongodb://<dbuser>:<dbpassword>@ds026658.mlab.com:26658/smartlistmean
