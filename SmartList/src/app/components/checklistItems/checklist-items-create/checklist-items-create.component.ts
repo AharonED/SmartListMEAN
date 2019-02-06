@@ -81,7 +81,7 @@ export class ChecklistItemsCreateComponent implements OnInit {
             description: "",//checklistItemsData.description,
             imagePath: "",//checklistItemsData.imagePath,
             checklistId: checklistItemsData.checklistId,
-            isDone: checklistItemsData.isDone
+            isDone: (checklistItemsData.isDone==true)
           };
           
           this.isDone=checklistItemsData.isDone;
