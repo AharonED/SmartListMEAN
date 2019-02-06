@@ -45,8 +45,8 @@ export class ChecklistItemsCreateComponent implements OnInit {
       }),
       description: new FormControl(null, { validators: [Validators.required] }),
       image: new FormControl(null, {
-        validators: [Validators.required],
-        asyncValidators: [mimeType]
+        //validators: [Validators.required],
+        //asyncValidators: [mimeType]
       }),
       isDone: new FormControl(null,null)
     });
@@ -78,7 +78,7 @@ export class ChecklistItemsCreateComponent implements OnInit {
           this.checklistItems = {
             id: checklistItemsData._id,
             title: checklistItemsData.title,
-            description: "",//checklistItemsData.description,
+            description: (checklistItemsData.description+""=="undefined"?"":checklistItemsData.description+""),
             imagePath: "",//checklistItemsData.imagePath,
             checklistId: checklistItemsData.checklistId,
             isDone: (checklistItemsData.isDone==true)
@@ -131,16 +131,21 @@ export class ChecklistItemsCreateComponent implements OnInit {
       this.checklistItemsService.addChecklistItems(
         this.form.value.title,
         this.form.value.description,
-        this.form.value.image,
+        null,//this.form.value.image,
         this.form.value.checklistId,
         this.form.value.isDone  
       );
     } else {
+      console.log("this.form.value.checklistId " + this.form.value.checklistId );
+      console.log("this.form.value.isDone     " + this.form.value.isDone     );
+      console.log("this.form.value.title     " + this.form.value.title     );
+      console.log("this.form.value.description     " + this.form.value.description     );
+      
       this.checklistItemsService.updateChecklistItems(
         this.checklistItemId,
         this.form.value.title,
         this.form.value.description,
-        this.form.value.image,
+        "",//this.form.value.image,
         this.form.value.checklistId ,
         this.form.value.isDone       
       );

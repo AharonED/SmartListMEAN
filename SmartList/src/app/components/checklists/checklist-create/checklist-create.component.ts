@@ -44,8 +44,8 @@ export class ChecklistCreateComponent implements OnInit {
       }),
       description: new FormControl(null, { validators: [Validators.required] }),
       image: new FormControl(null, {
-        validators: [Validators.required],
-        asyncValidators: [mimeType]
+        //validators: [Validators.required],
+        //asyncValidators: [mimeType]
       })
     });
 
