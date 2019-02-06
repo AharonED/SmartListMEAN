@@ -2,3 +2,21 @@ span.header {
     font-style: italic;
     font-weight: bold
 }
+
+div.textarea {
+    width: 100%;  
+  }
+  
+  textarea {
+      width: 100%;  
+    }
+    
+  mat-form-field {
+      width: 100%;
+    }
+
+
+  input.text {
+    width: 100%;  
+  }
+  

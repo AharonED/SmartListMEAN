@@ -9,3 +9,9 @@ div.textarea {
   mat-form-field {
       width: 100%;
     }
+
+    span.header {
+      font-style: italic;
+      font-weight: bold
+  }
+  

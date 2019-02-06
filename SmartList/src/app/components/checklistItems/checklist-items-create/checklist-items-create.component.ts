@@ -72,12 +72,14 @@ export class ChecklistItemsCreateComponent implements OnInit {
           this.isLoading = false;
           console.log("checklistItemsData.checklistId" + checklistItemsData.checklistId);
           console.log("checklistItemsData.isDone" + checklistItemsData.isDone);
-          
+          console.log(checklistItemsData)
+          console.log("checklistItemsData.description" + checklistItemsData.description);
+
           this.checklistItems = {
             id: checklistItemsData._id,
             title: checklistItemsData.title,
-            description: checklistItemsData.description,
-            imagePath: checklistItemsData.imagePath,
+            description: "",//checklistItemsData.description,
+            imagePath: "",//checklistItemsData.imagePath,
             checklistId: checklistItemsData.checklistId,
             isDone: checklistItemsData.isDone
           };
