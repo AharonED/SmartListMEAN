@@ -17,7 +17,8 @@ const app = express();
 mongoose
   .connect(
     //"mongodb+srv://max:QuBqs0T45GDKPlIG@cluster0-ntrwp.mongodb.net/node-angular?retryWrites=true"
-    "mongodb://smartlistmean:Mazda5Gray@ds026658.mlab.com:26658/smartlistmean"
+    //"mongodb://smartlistmean:Mazda5Gray@ds026658.mlab.com:26658/smartlistmean"
+    "mongodb://smartlistmean:Mazda5Gray@ds026658.mlab.com:26658/smartlistmean", { useNewUrlParser: true }
     )
 /*  mongoose.connect('mongodb://localhost:27017/myapp')*/
   .then(() => {
