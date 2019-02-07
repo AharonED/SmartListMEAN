@@ -3,14 +3,55 @@
 <head>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCnqVDFETbVC1F2tK3JN9rRyv0e3S-dIsI&libraries=places" async defer></script>
+
   <meta charset="utf-8">
   <title>Smart List</title>
   <base href="/">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-<link rel="stylesheet" href="styles.5b7d62f690eacf6a0ae1.css"></head>
+
+  <!--
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script src="https://cdn.socket.io/socket.io-1.0.0.js"></script>
+  
+  <script src="/node_modules/socket.io-client/dist/socket.io.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/SmartList/node_modules/socket.io-client/dist/socket.io.js"></script>
+  <script src="/jquery/dist/jquery.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+
+  <script>
+      var socket = io.connect();
+      jQuery(function ($) {
+          var gCount = $('#gCount');
+          socket.on('tweet', function (data) {
+            gCount.value = data; 
+          }); 
+      });
+  </script>
+
+
+<script>
+    console.log("index");
+    
+    var socket = new io.Socket('localhost',{      port: 3000    });   
+    socket.connect();
+    console.log('connecting...'); 
+    socket.on('GroupAdded', function(data) { 
+    console.log('script:' + data); 
+    document.getElementById('gCount').value =data; 
+     }); 
+     
+
+  </script>
+  -->
+
+</head>
 <body>
+  <!--<input type='text'  id="gCount" [value]="GroupsCount" #gCount/>-->
+
   <app-root></app-root>
-<script type="text/javascript" src="runtime.a66f828dca56eeb90e02.js"></script><script type="text/javascript" src="polyfills.7fb637d055581aa28d51.js"></script><script type="text/javascript" src="main.d05c639b15b558b2f9ed.js"></script></body>
+<script type="text/javascript" src="runtime.js"></script><script type="text/javascript" src="polyfills.js"></script><script type="text/javascript" src="styles.js"></script><script type="text/javascript" src="vendor.js"></script><script type="text/javascript" src="main.js"></script></body>
 </html>
