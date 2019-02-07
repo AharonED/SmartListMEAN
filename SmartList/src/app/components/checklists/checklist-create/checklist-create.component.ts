@@ -25,7 +25,7 @@ export class ChecklistCreateComponent implements OnInit {
   imagePreview: string;
   private mode = "create";
   private checklistId: string;
-  private groupId: string;
+  private groupId = "-1";
 
   
   constructor(
@@ -50,6 +50,8 @@ export class ChecklistCreateComponent implements OnInit {
     });
 
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
+
+      //In New mode
       if (paramMap.has("groupId"))
       {
         this.groupId = paramMap.get("groupId");
@@ -60,8 +62,8 @@ export class ChecklistCreateComponent implements OnInit {
         this.groupId="-1";
       }
 
-      console.log("this.groupId" + this.groupId);
-
+      console.log("--this.groupId" + this.groupId);
+//In Edit mode
       if (paramMap.has("checklistId")) {
         this.mode = "edit";
         this.checklistId = paramMap.get("checklistId");
@@ -81,6 +83,8 @@ export class ChecklistCreateComponent implements OnInit {
           if(this.groupId=="-1")
             this.groupId = checklistData.group;
 
+            console.log("this.groupId" + this.groupId);
+                        
           this.form.setValue({
             //id: this.checklist.id,
             title: this.checklist.title,
@@ -122,15 +126,20 @@ export class ChecklistCreateComponent implements OnInit {
       this.checklistsService.addChecklist(
         this.form.value.title,
         this.form.value.description,
-        this.form.value.image,
+        null,//this.form.value.image,
         this.form.value.group        
       );
     } else {
+      if(this.form.value.group==null )
+      this.form.value.group =this.groupId;
+
+    console.log("this.form.value.group " + this.form.value.group );
+
       this.checklistsService.updateChecklist(
         this.checklistId,
         this.form.value.title,
         this.form.value.description,
-        this.form.value.image,
+        null,//this.form.value.image,
         this.form.value.group ,
         null       
       );

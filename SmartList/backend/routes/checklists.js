@@ -38,13 +38,19 @@ router.post(
   "",
   multer({ storage: storage }).single("image"),
   (req, res, next) => {
-    const url = req.protocol + "://" + req.get("host");
+    //const url = req.protocol + "://" + req.get("host");
     console.log("post");
     console.log("GroupID=" + req.body.group);
+
+    let imagePath = req.body.imagePath;
+    if (req.file) {
+      const url = req.protocol + "://" + req.get("host");
+      imagePath = url + "/images/" + req.file.filename;
+    }
     const checklist = new Checklist({
       title: req.body.title,
       description: req.body.description,
-      imagePath: url + "/images/" + req.file.filename,
+      imagePath: imagePath,
       group: req.body.group
     });
     checklist.save().then(createdChecklist => {

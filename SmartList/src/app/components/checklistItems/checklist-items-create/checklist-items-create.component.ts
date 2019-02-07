@@ -26,7 +26,7 @@ export class ChecklistItemsCreateComponent implements OnInit {
   private mode = "create";
   private checklistItemId: string;
   private checklistId: string;
-  private isDone: boolean;
+  private isDone: boolean=false;
 
   
   constructor(
@@ -84,7 +84,7 @@ export class ChecklistItemsCreateComponent implements OnInit {
             isDone: (checklistItemsData.isDone==true)
           };
           
-          this.isDone=checklistItemsData.isDone;
+          this.isDone=this.checklistItems.isDone;
           
           if(this.checklistId=="-1")
             this.checklistId = checklistItemsData.checklistId;
@@ -127,13 +127,13 @@ export class ChecklistItemsCreateComponent implements OnInit {
         this.form.value.checklistId =this.checklistId;
 
       console.log("this.form.value.checklistId " + this.form.value.checklistId );
-      console.log("this.form.value.isDone     " + this.form.value.isDone     );
+      console.log("this.form.value.isDone     " + this.form.value.isDone    + " / (this.form.value.isDone  == true)" + (this.form.value.isDone  == true));
       this.checklistItemsService.addChecklistItems(
         this.form.value.title,
         this.form.value.description,
         null,//this.form.value.image,
         this.form.value.checklistId,
-        this.form.value.isDone  
+        (this.form.value.isDone  == true)
       );
     } else {
       console.log("this.form.value.checklistId " + this.form.value.checklistId );
@@ -147,7 +147,8 @@ export class ChecklistItemsCreateComponent implements OnInit {
         this.form.value.description,
         "",//this.form.value.image,
         this.form.value.checklistId ,
-        this.form.value.isDone       
+        (this.form.value.isDone  == true)  ,
+        true   
       );
     }
     this.form.reset();

@@ -75,7 +75,8 @@ export class ChecklistsService {
         checklistData
       )
       .subscribe(responseData => {
-        this.router.navigate(["/checklist-list/" + group]);
+        //this.router.navigate(["/checklist-list/" + group]);
+        this.router.navigate(["/group-edit/" + group]);
       });
   }
 
@@ -102,7 +103,8 @@ export class ChecklistsService {
     this.http
       .put("http://localhost:3000/api/checklists/" + id, checklistData)
       .subscribe(response => {
-        this.router.navigate(["/checklist-list/" + group]);
+        this.router.navigate(["/group-edit/" + group]);
+        //this.router.navigate(["/checklist-list/" + group]);
       });
   }
 

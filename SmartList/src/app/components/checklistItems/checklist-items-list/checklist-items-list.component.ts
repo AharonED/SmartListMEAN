@@ -116,6 +116,7 @@ masterToggle() {
 
 toggle(row: ChecklistItem) {
         this.selection.toggle(row);
+        console.log("row.isDone" + row.isDone)
         row.isDone= !row.isDone;
         this.checklistItemsService.updateChecklistItems(
           row.id,
