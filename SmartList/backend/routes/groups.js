@@ -39,7 +39,7 @@ router.post(
   multer({ storage: storage }).single("image"),
   (req, res, next) => {
     const url = req.protocol + "://" + req.get("host");
-    console.log("post");
+    //console.log("post");
     const group = new Group({
       title: req.body.title,
       description: req.body.description,
@@ -61,7 +61,7 @@ router.post(
     ///////////////
     //execute cocket emmiter for notifying all observerable.
     Group.estimatedDocumentCount((err,count)=>{
-      console.log("Group.count" + count+1);
+      //console.log("Group.count" + count+1);
       global.getIO.sockets.emit('GroupAdded', count+1);
     });
   
@@ -84,7 +84,7 @@ router.put(
       description: req.body.description,
       imagePath: imagePath
     });
-    console.log(group);
+    //console.log(group);
     Group.updateOne({ _id: req.params.id }, group).then(result => {
       res.status(200).json({ message: "Update successful!" });
     });
@@ -96,14 +96,14 @@ router.get("", (req, res, next) => {
   const pageSize = +req.query.pagesize;
   const currentPage = +req.query.page;
   const filter = req.query.filter;
-console.log(filter);
+//console.log(filter);
   
 let groupQuery;
 
 
   groupQuery = Group.find((filter!=""?JSON.parse(filter):null));
 
-console.log("pageSize" + pageSize + "-" +  currentPage);
+//console.log("pageSize" + pageSize + "-" +  currentPage);
 
   let fetchedGroups;
   if (pageSize && currentPage) {
@@ -137,14 +137,14 @@ router.get("/:id", (req, res, next) => {
 //Delete by ID
 router.delete("/:id", (req, res, next) => {
   Group.deleteOne({ _id: req.params.id }).then(result => {
-    console.log(result);
+    //console.log(result);
 
     /////////////////
     //Socket smits all client with current count of groups
     ///////////////
     //execute cocket emmiter for notifying all observerable.
     Group.estimatedDocumentCount((err,count)=>{
-      console.log("Group.count" + count);
+      //console.log("Group.count" + count);
       global.getIO.sockets.emit('GroupAdded', count);
     });    
     res.status(200).json({ message: "Group deleted!" });

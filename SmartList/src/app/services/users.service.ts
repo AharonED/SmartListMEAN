@@ -21,11 +21,11 @@ export class UsersService {
       )
       .pipe(
         map(userData => {
-          console.log(userData);
+          //console.log(userData);
 
           return {
             users: userData.users.map(user => {
-              console.log(user);
+              //console.log(user);
               return {
                 email: user.email,
                 address: user.address,
@@ -62,7 +62,7 @@ export class UsersService {
 
   addUser(email: string, password:string, address: string, longitude: number, latitude: number) {
 
-    console.log("m:" + email + "p:" + password + "ad:" + address+ "long:"+  (longitude+"") + (latitude+""));
+    //console.log("m:" + email + "p:" + password + "ad:" + address+ "long:"+  (longitude+"") + (latitude+""));
 
     const userData = new FormData();
     userData.append("username", email);

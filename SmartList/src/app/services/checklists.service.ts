@@ -16,7 +16,7 @@ export class ChecklistsService {
 
   getChecklists(checklistsPerPage: number, currentPage: number, group: string, filter:string="") {
     const queryParams = `?pagesize=${checklistsPerPage}&page=${currentPage}&group=${group}&filter=${filter}`;
-  console.log(filter);
+  //console.log(filter);
     this.http
       .get<{ message: string; checklists: any; maxChecklists: number }>(
         "http://localhost:3000/api/checklists" + queryParams
@@ -67,7 +67,7 @@ export class ChecklistsService {
     checklistData.append("description", description);
     checklistData.append("image", image, title);
     checklistData.append("group", group);
-    console.log(group);
+    //console.log(group);
     //checklistData.append("checklistItems",checklistItems);
     this.http
       .post<{ message: string; checklist: Checklist }>(

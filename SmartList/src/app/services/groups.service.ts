@@ -15,7 +15,7 @@ export class GroupsService {
 
   getGroups(groupsPerPage: number, currentPage: number, filter:string="") {
     const queryParams = `?pagesize=${groupsPerPage}&page=${currentPage}&filter=${filter}`;
-    console.log("pagesize=${groupsPerPage}" + groupsPerPage);
+    //console.log("pagesize=${groupsPerPage}" + groupsPerPage);
     this.http
       .get<{ message: string; groups: any; maxGroups: number }>(
         "http://localhost:3000/api/groups" + queryParams

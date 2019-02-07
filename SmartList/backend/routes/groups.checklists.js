@@ -58,7 +58,7 @@ Group.aggregate([
   }
   ]).then(groups =>{
       if (groups) {
-         console.log(groups);
+         //console.log(groups);
          
         res.status(200).json(groups);
       } else {

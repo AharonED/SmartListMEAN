@@ -11,5 +11,5 @@ const checklistSchema = mongoose.Schema({
   checklistItems : [{ type: Schema.Types.ObjectId, ref: 'ChecklistItems' }]
 }, { autoCreate: true});
 
-    console.log("creating Checklist scollection...");
+    //console.log("creating Checklist scollection...");
 module.exports = mongoose.model("Checklist", checklistSchema);

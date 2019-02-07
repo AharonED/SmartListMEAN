@@ -34,7 +34,7 @@ export class TwoWaysBindingsComponent implements OnInit {
     
     /* this.socketService.getMessages()
    .subscribe((message: string) => {
-     console.log("subscribe");
+     //console.log("subscribe");
      this.GroupsCount = parseInt(message);
    });    */
   }
@@ -64,13 +64,13 @@ export class TwoWaysBindingsComponent implements OnInit {
     //register  getMessages events of socket
    this.socketService.getMessages()
    .subscribe((message: string) => {
-     console.log("subscribe");
+     //console.log("subscribe");
      this.GroupsCount = parseInt(message);
    });    
   }
 
   ngOnDestroy() {
-    console.log("appComponent ngOnDestroy");
+    //console.log("appComponent ngOnDestroy");
     //this.socketService.getMessages().unsubscribe();
     //this.socketService.closeUserSocket();
   }  
@@ -123,7 +123,7 @@ export class TwoWaysBindingsComponent implements OnInit {
 }
 
   sendMsg() {
-    console.log("sending message to server");
+    //console.log("sending message to server");
     this.socket.emit("message", "HELLO WORLD");
   }
 
@@ -143,12 +143,12 @@ export class TwoWaysBindingsComponent implements OnInit {
 
       this.socket = socketIo(SERVER_URL);
       this.socket.on('message', function(message: any){
-        console.log("getting message from server: " + message);
+        //console.log("getting message from server: " + message);
       });
 
     //   
     //   this.socket.on('GroupAdded', function(groupsCount: any){
-    //     console.log("Group count: " + groupsCount);
+    //     //console.log("Group count: " + groupsCount);
     //     this.GroupsCount = groupsCount+1;
 
     //     //this.counterChange.emit(this.GroupsCount);
@@ -173,7 +173,7 @@ export class TwoWaysBindingsComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    console.log("appComponent ngOnDestroy");
+    //console.log("appComponent ngOnDestroy");
   }  
 }
 */

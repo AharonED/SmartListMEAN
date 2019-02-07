@@ -39,8 +39,8 @@ router.post(
   multer({ storage: storage }).single("image"),
   (req, res, next) => {
     //const url = req.protocol + "://" + req.get("host");
-    console.log("post");
-    console.log("ChecklistId=" + req.body.checklistId);
+    //console.log("post");
+    //console.log("ChecklistId=" + req.body.checklistId);
 
 
     let imagePath = req.body.imagePath;
@@ -86,7 +86,7 @@ router.put(
       checklistId: req.body.checklistId,
       isDone: req.body.isDone
     });
-    console.log(checklistItems);
+    //console.log(checklistItems);
     ChecklistItems.updateOne({ _id: req.params.id }, checklistItems).then(result => {
       res.status(200).json({ message: "Update successful!" });
     });
@@ -95,7 +95,7 @@ router.put(
 
 //Get all
 router.get("", (req, res, next) => {
-  console.log("get method");
+  //console.log("get method");
   
   const pageSize = +req.query.pagesize;
   const currentPage = +req.query.page;
@@ -103,8 +103,8 @@ router.get("", (req, res, next) => {
   const isDone = req.body.isDone;
 
 
-  console.log("checklistId:" + checklistId);
-  console.log("checklistId:" + req.query.checklistId);
+  //console.log("checklistId:" + checklistId);
+  //console.log("checklistId:" + req.query.checklistId);
 
 
   //  const checklistItemsQuery = ChecklistItems.find();
@@ -163,8 +163,8 @@ router.get("/:id", (req, res, next) => {
    
   }
   else  {*/
-    console.log("get method checklistItems by id");
-    console.log(req.params.id);
+    //console.log("get method checklistItems by id");
+    //console.log(req.params.id);
 
     ChecklistItems.findById(req.params.id).then(checklistItems => {
       if (checklistItems) {
@@ -179,7 +179,7 @@ router.get("/:id", (req, res, next) => {
 //Delete by ID
 router.delete("/:id", (req, res, next) => {
   ChecklistItems.deleteOne({ _id: req.params.id }).then(result => {
-    console.log(result);
+    //console.log(result);
     res.status(200).json({ message: "ChecklistItems deleted!" });
   });
 });

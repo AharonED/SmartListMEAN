@@ -16,7 +16,7 @@ export class ChecklistItemsService {
 
   getChecklistItems(checklistItemsPerPage: number, currentPage: number, checklistId: string) {
     const queryParams = `?pagesize=${checklistItemsPerPage}&page=${currentPage}&checklistId=${checklistId}`;
-    console.log(checklistId);
+    //console.log(checklistId);
     this.http
       .get<{ message: string; checklistItems: any; maxChecklistItems: number }>(
         "http://localhost:3000/api/checklistItems" + queryParams
@@ -25,7 +25,7 @@ export class ChecklistItemsService {
         map(checklistItemsData => {
           return {
             checklistItems: checklistItemsData.checklistItems.map(checklistItems => {
-              console.log("checklistItems.isDone" + checklistItems.isDone);
+              //console.log("checklistItems.isDone" + checklistItems.isDone);
 
               return {
                 id: checklistItems._id,
@@ -71,7 +71,7 @@ export class ChecklistItemsService {
     checklistItemsData.append("image", image, title);
     checklistItemsData.append("checklistId", checklistId);
     checklistItemsData.append("isDone", (isDone==true?'true':'false'));
-    console.log(checklistId);
+    //console.log(checklistId);
     //checklistItemsData.append("checklistItemsItems",checklistItemsItems);
     this.http
       .post<{ message: string; checklistItems: ChecklistItem }>(
@@ -104,7 +104,7 @@ export class ChecklistItemsService {
         checklistId: checklistId,
         isDone: isDone
       };
-      console.log("checklistItemsData.isDone" + checklistItemsData.isDone);
+      //console.log("checklistItemsData.isDone" + checklistItemsData.isDone);
     }
     this.http
       .put("http://localhost:3000/api/checklistItems/" + id, checklistItemsData)

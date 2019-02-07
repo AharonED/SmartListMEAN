@@ -46,12 +46,12 @@ export class GooglePlacesDirective implements OnInit {
     //@params: place - Google Autocomplete place object
     //@returns: location_obj - An address object in human readable format
 
-    console.log("getFormattedAddress");
+    //console.log("getFormattedAddress");
     let location_obj = {};
     for (let i in place.address_components) {
       let item = place.address_components[i];
       
-console.log(place.formatted_address);
+//console.log(place.formatted_address);
 
       location_obj['formatted_address'] = place.formatted_address;
       if(item['types'].indexOf("locality") > -1) {
@@ -77,7 +77,7 @@ console.log(place.formatted_address);
     //Event listener to monitor place changes in the input
     google.maps.event.addListener(autocomplete, 'place_changed', () => {
 
-      console.log( autocomplete.getPlace());
+      //console.log( autocomplete.getPlace());
       //Emit the new address object for the updated place
 //      this.onSelect.emit(this.getFormattedAddress(autocomplete.getPlace()));
 //      this.onSelect.emit(autocomplete.getPlace());

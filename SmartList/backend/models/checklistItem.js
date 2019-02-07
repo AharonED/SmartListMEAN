@@ -9,5 +9,5 @@ const checklistSchema = mongoose.Schema({
   isDone : Boolean(0)
 }, { autoCreate: true});
 
-    console.log("Creating ChecklistItem collection...");
+    //console.log("Creating ChecklistItem collection...");
 module.exports = mongoose.model("ChecklistItem", checklistSchema);

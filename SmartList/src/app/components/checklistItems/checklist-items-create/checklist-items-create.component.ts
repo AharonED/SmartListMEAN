@@ -62,7 +62,7 @@ export class ChecklistItemsCreateComponent implements OnInit {
         this.checklistId="-1";
       }
 
-      console.log("this.checklistId" + this.checklistId);
+      //console.log("this.checklistId" + this.checklistId);
 
       if (paramMap.has("checklistItemId")) {
         this.mode = "edit";
@@ -70,10 +70,10 @@ export class ChecklistItemsCreateComponent implements OnInit {
         this.isLoading = true;
         this.checklistItemsService.getChecklistItem(this.checklistItemId).subscribe(checklistItemsData => {
           this.isLoading = false;
-          console.log("checklistItemsData.checklistId" + checklistItemsData.checklistId);
-          console.log("checklistItemsData.isDone" + checklistItemsData.isDone);
-          console.log(checklistItemsData)
-          console.log("checklistItemsData.description" + checklistItemsData.description);
+          //console.log("checklistItemsData.checklistId" + checklistItemsData.checklistId);
+          //console.log("checklistItemsData.isDone" + checklistItemsData.isDone);
+          //console.log(checklistItemsData)
+          //console.log("checklistItemsData.description" + checklistItemsData.description);
 
           this.checklistItems = {
             id: checklistItemsData._id,
@@ -126,8 +126,8 @@ export class ChecklistItemsCreateComponent implements OnInit {
       if(this.form.value.checklistId==null )
         this.form.value.checklistId =this.checklistId;
 
-      console.log("this.form.value.checklistId " + this.form.value.checklistId );
-      console.log("this.form.value.isDone     " + this.form.value.isDone    + " / (this.form.value.isDone  == true)" + (this.form.value.isDone  == true));
+      //console.log("this.form.value.checklistId " + this.form.value.checklistId );
+      //console.log("this.form.value.isDone     " + this.form.value.isDone    + " / (this.form.value.isDone  == true)" + (this.form.value.isDone  == true));
       this.checklistItemsService.addChecklistItems(
         this.form.value.title,
         this.form.value.description,
@@ -136,10 +136,10 @@ export class ChecklistItemsCreateComponent implements OnInit {
         (this.form.value.isDone  == true)
       );
     } else {
-      console.log("this.form.value.checklistId " + this.form.value.checklistId );
-      console.log("this.form.value.isDone     " + this.form.value.isDone     );
-      console.log("this.form.value.title     " + this.form.value.title     );
-      console.log("this.form.value.description     " + this.form.value.description     );
+      //console.log("this.form.value.checklistId " + this.form.value.checklistId );
+      //console.log("this.form.value.isDone     " + this.form.value.isDone     );
+      //console.log("this.form.value.title     " + this.form.value.title     );
+      //console.log("this.form.value.description     " + this.form.value.description     );
       
       this.checklistItemsService.updateChecklistItems(
         this.checklistItemId,
@@ -155,7 +155,7 @@ export class ChecklistItemsCreateComponent implements OnInit {
   }
 
   OnIndeterminateChange($event){
-    console.log($event); 
+    //console.log($event); 
     this.isDone=$event;//true or false
  }
  

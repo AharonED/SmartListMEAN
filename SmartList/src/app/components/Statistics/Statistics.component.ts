@@ -32,7 +32,7 @@ export class StatisticsComponent implements OnInit {
     this.chartData = [];
     this.groupsService.getGroupChecklistsCountTop10().subscribe(groupData => {
       const groups = JSON.stringify(groupData);
-      console.log(groupData);
+      //console.log(groupData);
 
       var arr:Array<any>;
       arr = JSON.parse(groups, (key, value) => {
@@ -41,7 +41,7 @@ export class StatisticsComponent implements OnInit {
         }
         return value;
       });
-      console.log(arr);
+      //console.log(arr);
 
 
       this.chartData = [];
@@ -62,7 +62,7 @@ export class StatisticsComponent implements OnInit {
         `Index ${i}`,
         Math.floor(Math.random() * 100)
       ]);
-      console.log(`Index ${i}`);
+      //console.log(`Index ${i}`);
     }
     */
   }

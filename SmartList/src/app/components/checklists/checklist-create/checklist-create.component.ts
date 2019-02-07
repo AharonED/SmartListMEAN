@@ -62,7 +62,7 @@ export class ChecklistCreateComponent implements OnInit {
         this.groupId="-1";
       }
 
-      console.log("--this.groupId" + this.groupId);
+      //console.log("--this.groupId" + this.groupId);
 //In Edit mode
       if (paramMap.has("checklistId")) {
         this.mode = "edit";
@@ -70,7 +70,7 @@ export class ChecklistCreateComponent implements OnInit {
         this.isLoading = true;
         this.checklistsService.getChecklist(this.checklistId).subscribe(checklistData => {
           this.isLoading = false;
-          console.log("checklistData.group" + checklistData.group)
+          //console.log("checklistData.group" + checklistData.group)
           this.checklist = {
             id: checklistData._id,
             title: checklistData.title,
@@ -83,7 +83,7 @@ export class ChecklistCreateComponent implements OnInit {
           if(this.groupId=="-1")
             this.groupId = checklistData.group;
 
-            console.log("this.groupId" + this.groupId);
+            //console.log("this.groupId" + this.groupId);
                         
           this.form.setValue({
             //id: this.checklist.id,
@@ -122,7 +122,7 @@ export class ChecklistCreateComponent implements OnInit {
       if(this.form.value.group==null )
         this.form.value.group =this.groupId;
 
-      console.log("this.form.value.group " + this.form.value.group );
+      //console.log("this.form.value.group " + this.form.value.group );
       this.checklistsService.addChecklist(
         this.form.value.title,
         this.form.value.description,
@@ -133,7 +133,7 @@ export class ChecklistCreateComponent implements OnInit {
       if(this.form.value.group==null )
       this.form.value.group =this.groupId;
 
-    console.log("this.form.value.group " + this.form.value.group );
+    //console.log("this.form.value.group " + this.form.value.group );
 
       this.checklistsService.updateChecklist(
         this.checklistId,

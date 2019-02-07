@@ -66,7 +66,7 @@ export class GroupCreateComponent implements OnInit {
             imagePath: groupData.imagePath
           };
 
-          console.log( this.group);
+          //console.log( this.group);
 
           this.imagePreview = groupData.imagePath;
           this.form.setValue({

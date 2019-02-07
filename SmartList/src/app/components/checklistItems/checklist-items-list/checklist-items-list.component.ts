@@ -43,14 +43,14 @@ export class ChecklistItemsListComponent implements OnInit, OnDestroy {
     this.isLoading = true;
 
       this.route.paramMap.subscribe((paramMap: ParamMap) => {
-        console.log("paramMap.has(checklistId)" + paramMap.has("checklistId"));
+        //console.log("paramMap.has(checklistId)" + paramMap.has("checklistId"));
         if (paramMap.has("checklistId"))
         {
 //          if(this.checklistId=="-1") 
             this.checklistId = paramMap.get("checklistId");
         }
       
-          console.log("this.checklistId - list" + this.checklistId);
+          //console.log("this.checklistId - list" + this.checklistId);
 
           this.checklistItemsService.getChecklistItems(this.checklistItemsPerPage, this.currentPage, this.checklistId);
           this.checklistItemsSub = this.checklistItemsService
@@ -116,7 +116,7 @@ masterToggle() {
 
 toggle(row: ChecklistItem) {
         this.selection.toggle(row);
-        console.log("row.isDone" + row.isDone)
+        //console.log("row.isDone" + row.isDone)
         row.isDone= !row.isDone;
         this.checklistItemsService.updateChecklistItems(
           row.id,
@@ -126,7 +126,7 @@ toggle(row: ChecklistItem) {
           row.checklistId ,
           row.isDone, false       
           );
-          console.log("togle " + row.isDone);
+          //console.log("togle " + row.isDone);
 }
 
   onChangedPage(pageData: PageEvent) {

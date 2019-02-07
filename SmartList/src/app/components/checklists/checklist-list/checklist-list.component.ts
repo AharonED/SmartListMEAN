@@ -46,7 +46,7 @@ export class ChecklistListComponent implements OnInit, OnDestroy {
             this.groupId = paramMap.get("groupId");
         }
       
-          console.log("this.groupId - list" + this.groupId);
+          //console.log("this.groupId - list" + this.groupId);
 
           this.checklistsService.getChecklists(this.checklistsPerPage, this.currentPage, this.groupId);
           this.checklistsSub = this.checklistsService
@@ -77,9 +77,9 @@ export class ChecklistListComponent implements OnInit, OnDestroy {
   }
 
   applyFilter(filterValue) {
-    //console.log("filter: " + filterValue);    
-    //console.log(this.filterByTitle);
-    //console.log(this.filterByDesc);
+    ////console.log("filter: " + filterValue);    
+    ////console.log(this.filterByTitle);
+    ////console.log(this.filterByDesc);
 /*
     if(filterValue=="")
       this.groups = this.groupsAll;
@@ -134,9 +134,9 @@ export class ChecklistListComponent implements OnInit, OnDestroy {
 
   applyFilterType(checked:boolean, filterValue:string, type:string){
 
-    //console.log("checked=" + checked);
-    //console.log("filterValue=" + filterValue);
-    //console.log("type=" + type);
+    ////console.log("checked=" + checked);
+    ////console.log("filterValue=" + filterValue);
+    ////console.log("type=" + type);
 
     if(type=="filterByTitle")
       this.filterByTitle=checked;

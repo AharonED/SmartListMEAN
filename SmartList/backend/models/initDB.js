@@ -58,7 +58,7 @@ exports.resetDB = function( ) {
                     group.id= createdGroup._id;
                     
                     
-                    console.log("Adding Group:" + group._id + "---" + i);
+                    //console.log("Adding Group:" + group._id + "---" + i);
                     
                       if( !(typeof groupMap[group.title].Checklists === 'undefined'))
                       {
@@ -93,11 +93,11 @@ exports.resetDB = function( ) {
                             {
                             //for( var j = 0; j < groupMap[group.title].Checklists.length; j++ ) 
                             {
-                              console.log("Adding checklist:" + checklist._id + "---" + j);
+                              //console.log("Adding checklist:" + checklist._id + "---" + j);
 
                                     if( checklistMap[checklist.title].ChecklistItems!=null  && !(typeof checklistMap[checklist.title].ChecklistItems === 'undefined'))
                                     {
-                                      console.log("ChecklistItems" + checklistMap[checklist.title].ChecklistItems.length);
+                                      //console.log("ChecklistItems" + checklistMap[checklist.title].ChecklistItems.length);
                                       
                                       for( var z = 0; z < checklistMap[checklist.title].ChecklistItems.length; z++ ) {
                                         const checklistItem = new ChecklistItems({

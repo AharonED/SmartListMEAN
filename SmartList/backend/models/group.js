@@ -8,6 +8,6 @@ const groupSchema = mongoose.Schema({
   checklist : [{ type: Schema.Types.ObjectId, ref: 'Checklist' }]
 }, { autoCreate: true});
 
-    console.log("creating collection...");
+    //console.log("creating collection...");
 module.exports = mongoose.model("Group", groupSchema);
  

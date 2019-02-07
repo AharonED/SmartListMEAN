@@ -39,8 +39,8 @@ router.post(
   multer({ storage: storage }).single("image"),
   (req, res, next) => {
     //const url = req.protocol + "://" + req.get("host");
-    console.log("post");
-    console.log("GroupID=" + req.body.group);
+    //console.log("post");
+    //console.log("GroupID=" + req.body.group);
 
     let imagePath = req.body.imagePath;
     if (req.file) {
@@ -82,7 +82,7 @@ router.put(
       imagePath: imagePath,
       group: req.body.group
     });
-    console.log(checklist);
+    //console.log(checklist);
     Checklist.updateOne({ _id: req.params.id }, checklist).then(result => {
       res.status(200).json({ message: "Update successful!" });
     });
@@ -91,17 +91,17 @@ router.put(
 
 //Get all
 router.get("", (req, res, next) => {
-  console.log("get method");
+  //console.log("get method");
   
   const pageSize = +req.query.pagesize;
   const currentPage = +req.query.page;
   const group = req.query.group;
   const filter = req.query.filter;
 
-  console.log("group:" + group);
-  console.log("group:" + req.query.group);
+  //console.log("group:" + group);
+  //console.log("group:" + req.query.group);
 
-  console.log(filter);
+ // console.log(filter);
 
   //  const checklistQuery = Checklist.find();
 //  const checklistQuery = Checklist.find({"_id": ObjectId("5c331a3c0f7e35027a92d48d")});
@@ -159,7 +159,7 @@ router.get("/:id", (req, res, next) => {
    
   }
   else  {*/
-    console.log("get method checklist by id");
+    //console.log("get method checklist by id");
     console.log(req.params.id);
 
     Checklist.findById(req.params.id).then(checklist => {
@@ -175,7 +175,7 @@ router.get("/:id", (req, res, next) => {
 //Delete by ID
 router.delete("/:id", (req, res, next) => {
   Checklist.deleteOne({ _id: req.params.id }).then(result => {
-    console.log(result);
+    //console.log(result);
     res.status(200).json({ message: "Checklist deleted!" });
   });
 });

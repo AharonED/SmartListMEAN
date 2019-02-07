@@ -47,7 +47,7 @@ export class SocketService {
     }
 
     public getMessages = () => {
-        console.log("getMessages");
+        //console.log("getMessages");
         return Observable.create((observer) => {
             SocketService.socket.on('GroupAdded', (message) => {
                 observer.next(message);

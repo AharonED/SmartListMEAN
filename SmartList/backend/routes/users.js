@@ -55,7 +55,7 @@ const MIME_TYPE_MAP = {
         const pageSize = +req.query.pagesize;
         const currentPage = +req.query.page;
         const filter = req.query.filter;
-      console.log(filter);
+      //console.log(filter);
         
       let userQuery;
       
@@ -72,7 +72,7 @@ const MIME_TYPE_MAP = {
             return User.find((filter!=""?JSON.parse(filter):null)).count();
           })
           .then(count => {
-              console.log(fetchedUsers);
+              //console.log(fetchedUsers);
             res.status(200).json({
               message: "Users fetched successfully!",
               users: fetchedUsers,
@@ -93,7 +93,7 @@ router.post(
     (req, res, next) => {
           // Creates a new User based on the Mongoose schema and the post bo.dy
        // var newuser = new User(req.body);
-       console.log("----email" + req.body.email + " pwd:" + req.body.password+ " add:" + req.body.address+ "long:" + (req.body.longitude+"") + (req.body.latitude+""));
+       //console.log("----email" + req.body.email + " pwd:" + req.body.password+ " add:" + req.body.address+ "long:" + (req.body.longitude+"") + (req.body.latitude+""));
 
         const newuser = new User({
             username: req.body.email,

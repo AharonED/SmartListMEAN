@@ -61,11 +61,11 @@ this.user.subscribe(
         (user) => {
           if (user) {
             this.userDetails = user;
-            console.log(this.userDetails);
+            //console.log(this.userDetails);
           }
           else {
             this.userDetails = null;
-            console.log('Not Signin');
+            //console.log('Not Signin');
           }
         }
       );

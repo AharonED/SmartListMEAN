@@ -41,7 +41,7 @@ export class EmailComponent implements OnInit {
       return;
     }
 
-      console.log(this.form.value);
+      //console.log(this.form.value);
       return new Promise<any>((resolve, reject) => {
         this.af.auth.signInWithEmailAndPassword(this.form.value.email, this.form.value.password)
         .then(

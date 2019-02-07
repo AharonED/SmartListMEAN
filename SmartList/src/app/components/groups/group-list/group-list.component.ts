@@ -36,10 +36,10 @@ export class GroupListComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.isLoading = true;
     //this.groupsService.getGroups(this.groupsPerPage, this.currentPage);
-console.log("ngOnInit");
-console.log("totalGroups = " + (this.totalGroups + ""));
-console.log("  groupsPerPage = " + (this.groupsPerPage + ""));
-console.log("  currentPage = " + (this.currentPage + ""));
+//console.log("ngOnInit");
+//console.log("totalGroups = " + (this.totalGroups + ""));
+//console.log("  groupsPerPage = " + (this.groupsPerPage + ""));
+//console.log("  currentPage = " + (this.currentPage + ""));
 
     this.groupsSub = this.groupsService
       .getGroupUpdateListener()
@@ -48,7 +48,7 @@ console.log("  currentPage = " + (this.currentPage + ""));
         this.totalGroups = groupData.groupCount;
         this.groups = groupData.groups;
 //        this.groupsAll = groupData.groups;
-        console.log("subscribe");
+        //console.log("subscribe");
 
       });
 
@@ -56,7 +56,7 @@ console.log("  currentPage = " + (this.currentPage + ""));
   }
 
   onChangedPage(pageData: PageEvent) {
-    console.log("  onChangedPage");
+    //console.log("  onChangedPage");
 
     this.isLoading = true;
     this.currentPage = pageData.pageIndex + 1;
@@ -111,9 +111,9 @@ console.log("  currentPage = " + (this.currentPage + ""));
 
   applyFilterType(checked:boolean, filterValue:string, type:string){
 
-    //console.log("checked=" + checked);
-    //console.log("filterValue=" + filterValue);
-    //console.log("type=" + type);
+    ////console.log("checked=" + checked);
+    ////console.log("filterValue=" + filterValue);
+    ////console.log("type=" + type);
 
     if(type=="filterByTitle")
       this.filterByTitle=checked;
@@ -129,6 +129,6 @@ console.log("  currentPage = " + (this.currentPage + ""));
 
   ngOnDestroy() {
     this.groupsSub.unsubscribe();
-    console.log("ngOnDestroy");
+    //console.log("ngOnDestroy");
   }
 }
