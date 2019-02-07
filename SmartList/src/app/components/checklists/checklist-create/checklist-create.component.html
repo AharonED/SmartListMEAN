@@ -26,6 +26,8 @@
     <button mat-raised-button color="primary" type="submit">Save Checklist</button>
 
     <a mat-button  *ngIf="checklistId" color="primary" [routerLink]="['/checklistItem-list', checklistId]">Checklist Items</a> 
+    <a mat-button routerLink="/group-edit/{{groupId}}" color="primary" routerLinkActive="mat-accent">Go back</a>
+
     <br>
     <br>
     <br>

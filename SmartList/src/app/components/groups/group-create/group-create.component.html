@@ -21,6 +21,8 @@
     <button mat-raised-button color="primary" type="submit">Save Group</button>
     <a mat-button  *ngIf="groupId" color="primary" [routerLink]="['/checklist-list', groupId]">Checklists</a> 
     <button mat-button *ngIf="groupId" color="warn" (click)="onDelete(group.id)">DELETE</button>
+    <a mat-button routerLink="/group-list" color="primary" routerLinkActive="mat-accent">Go back</a>
+
     <br>
     <br>
     <br>
